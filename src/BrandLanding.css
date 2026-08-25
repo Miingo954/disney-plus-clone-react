@@ -88,9 +88,18 @@
 /* Each hub is an original brand world—not a dimmed trailer frame. */
 .brand-landing.disney { background: radial-gradient(circle at 74% 34%, #306bbd 0, #102f76 27%, #061a4b 53%, #030817 100%); }
 .brand-landing.disney::before { content: ''; position: absolute; inset: 0; z-index: 0; opacity: .85; background-image: radial-gradient(circle at 14% 22%, #fff 0 1px, transparent 2px), radial-gradient(circle at 68% 18%, #c9e4ff 0 1px, transparent 2px), radial-gradient(circle at 83% 63%, #fff 0 1px, transparent 2px), radial-gradient(circle at 48% 72%, #7cb4ff 0 2px, transparent 3px); background-size: 170px 140px, 210px 190px, 260px 240px, 310px 260px; animation: disney-stars 18s linear infinite; }
-.brand-landing.pixar { background: radial-gradient(circle at 50% 45%, #1e2940 0, #090e1c 53%, #02040c 100%); }
-.brand-landing.pixar::before { display: none; }
-.brand-landing.pixar::before { content: ''; position: absolute; inset: -25%; z-index: 0; background: repeating-radial-gradient(ellipse at 78% 58%, rgba(255,222,199,.18) 0 1px, transparent 2px 85px); transform: rotate(-10deg); animation: pixar-glow 14s ease-in-out infinite alternate; }
+.brand-landing.pixar {
+  background:
+    linear-gradient(90deg, rgba(2, 5, 14, .94) 0%, rgba(3, 7, 17, .72) 31%, rgba(3, 7, 17, .14) 67%, rgba(2, 5, 14, .34) 100%),
+    url('https://cdn.wallpapersafari.com/90/65/84LQpe.png') center / cover;
+}
+.brand-landing.pixar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(0, 4, 13, .12), rgba(0, 4, 13, .46));
+}
 .brand-landing.wars { background: radial-gradient(circle at 72% 50%, #17366d 0, #080f26 31%, #02040b 70%); }
 .brand-landing.wars::before { content: ''; position: absolute; inset: -25%; z-index: 0; opacity: .8; background-image: radial-gradient(#e6f1ff 1px, transparent 1.4px), radial-gradient(#88b8ff 1px, transparent 1.4px); background-size: 43px 43px, 79px 79px; background-position: 0 0, 21px 29px; animation: wars-stars 32s linear infinite; }
 .brand-landing.natgeo { background: radial-gradient(circle at 72% 43%, #936f23 0, #3f3514 28%, #11150e 62%, #030713 100%); }
@@ -102,15 +111,34 @@
 .disney .studio-intro span { top: 17%; right: -7%; width: 54%; height: 2px; transform: rotate(-21deg); transform-origin: right; background: linear-gradient(90deg, transparent, #d8efff 38%, #fff 84%, transparent); box-shadow: 0 0 9px #fff, 0 0 25px #75b9ff; animation: disney-shooting-star 8s ease-in-out infinite; }
 .disney .studio-intro i { right: 11%; bottom: 17%; width: min(38vw,460px); height: min(18vw,205px); border: 2px solid rgba(202,231,255,.46); border-bottom: 0; border-radius: 50% 50% 0 0; filter: drop-shadow(0 0 16px rgba(101,180,255,.35)); animation: disney-castle-glow 8s ease-in-out infinite; }
 .disney .studio-intro b { right: 26%; bottom: 33%; width: 3px; height: 78px; background: #caeaff; box-shadow: 0 0 10px #fff, 23px 18px 0 -1px #caeaff, 50px 34px 0 -1px #caeaff; opacity: .72; }
-.pixar .studio-intro span { right: 16%; bottom: -30%; width: 42vw; height: 42vw; border-radius: 50%; background: radial-gradient(circle, rgba(255,239,215,.68) 0, rgba(255,180,149,.2) 24%, transparent 67%); animation: pixar-spotlight 8s ease-in-out infinite; }
-.pixar .studio-intro i { right: 13%; top: 18%; width: 3px; height: 310px; background: rgba(255,230,205,.62); box-shadow: 25px 48px 0 -1px rgba(255,230,205,.42), -24px 104px 0 -1px rgba(255,230,205,.28); transform: rotate(17deg); animation: pixar-beam 8s ease-in-out infinite; }
-.pixar .studio-intro::before,.pixar .studio-intro::after { display: none; }
-.pixar .studio-intro span,.pixar .studio-intro i { display: none; }
-.pixar-poster-stage { position: absolute; z-index: 0; top: 50%; left: 50%; height: min(72%,420px); aspect-ratio: 16/9; transform: translate(-50%,-50%); box-shadow: 0 18px 52px rgba(0,0,0,.36); opacity: 0; animation: pixar-poster-enter 900ms cubic-bezier(.2,.85,.25,1) 100ms forwards; }
-.pixar-poster-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.pixar-bulb-glow { position: absolute; left: 34%; top: 47%; width: min(12vw,118px); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(255,255,236,.92) 0 4%, rgba(255,246,180,.42) 18%, rgba(255,217,115,.12) 42%, transparent 70%); mix-blend-mode: screen; animation: lamp-bulb-pulse 2.8s ease-in-out infinite; }
-@keyframes pixar-poster-enter { from { opacity:0; transform:translate(-50%,-46%) scale(.96); } to { opacity:1; transform:translate(-50%,-50%) scale(1); } }
-@keyframes lamp-bulb-pulse { 0%,100% { opacity:.62; transform:translate(-50%,-50%) scale(.82); } 50% { opacity:1; transform:translate(-50%,-50%) scale(1.12); } }
+.pixar .studio-intro span {
+  display: block;
+  inset: 0;
+  transform-origin: 39% 48%;
+  clip-path: polygon(39% 47%, 100% 61%, 100% 94%, 39% 54%);
+  background: linear-gradient(90deg, rgba(255, 249, 194, .55) 0%, rgba(255, 243, 183, .26) 28%, rgba(255, 235, 166, .08) 69%, transparent 100%);
+  mix-blend-mode: screen;
+  filter: blur(1px);
+  animation: pixar-clean-beam 5.8s ease-in-out infinite;
+}
+.pixar .studio-intro i {
+  display: block;
+  left: 39%; top: 48%; width: min(12vw, 120px); aspect-ratio: 1;
+  height: auto; border-radius: 50%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,239,.95) 0 5%, rgba(255,242,174,.44) 23%, rgba(255,225,123,.12) 47%, transparent 72%);
+  mix-blend-mode: screen;
+  animation: pixar-bulb 3.4s ease-in-out infinite;
+}
+.pixar .studio-intro b { display: none; }
+.pixar-poster-stage { display: none; }
+@keyframes pixar-clean-beam {
+  0%, 100% { opacity: .27; transform: rotate(-1.5deg) scaleX(.96); }
+  50% { opacity: .48; transform: rotate(1.5deg) scaleX(1); }
+}
+@keyframes pixar-bulb {
+  0%, 100% { opacity: .68; transform: translate(-50%, -50%) scale(.9); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+}
 .wars .studio-intro span { inset: -70%; background: repeating-radial-gradient(ellipse at center, transparent 0 20px, rgba(180,216,255,.25) 22px 24px, transparent 27px 46px); animation: wars-hyperspace 4.8s linear infinite; }
 .wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
 .natgeo .studio-intro span { right: 14%; top: 18%; width: min(31vw,365px); height: min(20vw,235px); border: 7px solid #f3c52f; box-shadow: 0 0 32px rgba(243,197,47,.32); animation: natgeo-frame 7s ease-in-out infinite; }
