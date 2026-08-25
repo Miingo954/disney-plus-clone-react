@@ -76,8 +76,10 @@ export default function App(){
 }
 
 function BrandLanding({brand,feature,openTitle}){
+ const [lampBeam,setLampBeam]=useState({angle:0,length:320})
  if(!brand)return null
- return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ const trackLamp=event=>{if(brand.slug!=='pixar')return;const box=event.currentTarget.getBoundingClientRect();const bulbX=box.left+box.width*.34;const bulbY=box.top+box.height*.47;const dx=event.clientX-bulbX;const dy=event.clientY-bulbY;setLampBeam({angle:Math.atan2(dy,dx)*180/Math.PI,length:Math.max(120,Math.hypot(dx,dy))})}
+ return <section className={`brand-landing ${brand.slug}`} onPointerMove={trackLamp} style={brand.slug==='pixar'?{'--beam-angle':`${lampBeam.angle}deg`,'--beam-length':`${lampBeam.length}px`}:undefined}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
