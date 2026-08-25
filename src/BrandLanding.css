@@ -91,6 +91,11 @@
 .brand-landing.disney::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(2,7,23,.96) 0%,rgba(2,7,23,.76) 31%,rgba(2,7,23,.13) 71%,rgba(2,7,23,.28) 100%); }
 .brand-landing.disney .studio-intro { display:none; }
 .disney-sky-stars { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
+.disney-star-field { position:absolute; inset:0; }
+.disney-sky-dot { position:absolute; left:var(--x); top:var(--y); width:var(--size); height:var(--size); border-radius:50%; background:rgba(226,242,255,.82); box-shadow:0 0 5px rgba(176,224,255,.55); }
+.disney-sky-dot.twinkle { animation:disney-dot-twinkle 4.6s ease-in-out var(--delay) infinite; }
+.disney-shooting-star { position:absolute; top:9%; left:-12%; width:4px; height:4px; border-radius:50%; background:#fff; opacity:0; box-shadow:0 0 7px 3px #fff,0 0 18px 6px rgba(125,202,255,.85); animation:disney-shooting-star 14s ease-in var(--delay,2s) infinite; }
+.disney-shooting-star::after { content:''; position:absolute; right:2px; top:50%; width:110px; height:2px; transform:translateY(-50%); transform-origin:right; background:linear-gradient(90deg,transparent,rgba(188,231,255,.08) 27%,rgba(235,250,255,.82)); border-radius:999px; }
 .disney-sky-stars i { position:absolute; display:block; border-radius:50%; }
 .disney-sky-stars i { left:88%; top:17%; width:12px; height:12px; background:#fff; box-shadow:0 0 9px 3px #fff,0 0 27px 10px rgba(117,195,255,.88); animation:disney-second-star 3.4s ease-in-out infinite; }
 .disney-sky-stars i::before,.disney-sky-stars i::after { content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:linear-gradient(90deg,transparent 0%,rgba(236,249,255,.3) 27%,#fff 46%,#fff 54%,rgba(236,249,255,.3) 73%,transparent 100%); clip-path:polygon(50% 0%,54% 43%,100% 50%,54% 57%,50% 100%,46% 57%,0% 50%,46% 43%); filter:drop-shadow(0 0 5px #fff); }
@@ -101,6 +106,9 @@
 .disney-small-star::before { width:29px; height:29px; }
 .disney-small-star::after { width:14px; height:14px; transform:translate(-50%,-50%) rotate(45deg); opacity:.72; }
 @keyframes disney-second-star { 0%,100% { opacity:.56; transform:scale(.76); filter:brightness(.85); } 50% { opacity:1; transform:scale(1.22); filter:brightness(1.3); } }
+@keyframes disney-dot-twinkle { 0%,100% { opacity:.36; transform:scale(.75); } 50% { opacity:1; transform:scale(1.2); } }
+@keyframes disney-shooting-star { 0%,67% { opacity:0; transform:translate3d(0,0,0) rotate(18deg); } 70% { opacity:1; } 77% { opacity:1; transform:translate3d(110vw,30vh,0) rotate(18deg); } 80%,100% { opacity:0; transform:translate3d(118vw,32vh,0) rotate(18deg); } }
+@media (max-width:700px) { .disney-sky-dot:nth-child(n+15) { display:none; } .disney-shooting-star::after { width:72px; } }
 .brand-landing.pixar {
   background:
     linear-gradient(90deg, rgba(2, 5, 14, .93) 0%, rgba(3, 7, 17, .67) 29%, rgba(3, 7, 17, .12) 67%, rgba(2, 5, 14, .22) 100%),
