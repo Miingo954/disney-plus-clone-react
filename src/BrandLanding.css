@@ -112,7 +112,7 @@
 .disney .studio-intro i { right: 11%; bottom: 17%; width: min(38vw,460px); height: min(18vw,205px); border: 2px solid rgba(202,231,255,.46); border-bottom: 0; border-radius: 50% 50% 0 0; filter: drop-shadow(0 0 16px rgba(101,180,255,.35)); animation: disney-castle-glow 8s ease-in-out infinite; }
 .disney .studio-intro b { right: 26%; bottom: 33%; width: 3px; height: 78px; background: #caeaff; box-shadow: 0 0 10px #fff, 23px 18px 0 -1px #caeaff, 50px 34px 0 -1px #caeaff; opacity: .72; }
 .pixar .studio-intro span {
-  display: block;
+  display: none;
   inset: 0;
   transform-origin: 34.2% 42%;
   clip-path: polygon(34.2% 41.8%, 100% 52%, 100% 86%, 34.2% 49.2%);
@@ -122,6 +122,28 @@
   mix-blend-mode: screen;
   filter: blur(4px);
   animation: pixar-clean-beam 5.8s ease-in-out infinite;
+}
+.pixar-follow-light {
+  --pixar-beam-width: 68vw;
+  --pixar-beam-height: min(23vw, 260px);
+  --pixar-beam-angle: 8deg;
+  position: absolute;
+  z-index: 0;
+  left: 34.2%;
+  top: 42%;
+  width: var(--pixar-beam-width);
+  height: var(--pixar-beam-height);
+  transform: translateY(-50%) rotate(var(--pixar-beam-angle));
+  transform-origin: left center;
+  clip-path: polygon(0 43%, 100% 0, 100% 100%, 0 57%);
+  background: linear-gradient(90deg, rgba(255,253,222,.52), rgba(255,247,197,.26) 34%, rgba(255,237,176,.07) 71%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.68) 45%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.68) 45%, transparent 100%);
+  mix-blend-mode: screen;
+  filter: blur(3px);
+  pointer-events: none;
+  opacity: .5;
+  transition: width .22s ease-out, height .22s ease-out, transform .28s cubic-bezier(.2,.8,.2,1);
 }
 .pixar .studio-intro i {
   display: block;
