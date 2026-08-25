@@ -137,12 +137,12 @@
 }
 .pixar .studio-intro i {
   display: block;
-  left: 34.3%; top: 42.8%;
-  width: clamp(42px, 5.2vw, 80px); height: clamp(42px, 5.2vw, 80px);
+  left: 33.85%; top: 42.8%;
+  width: clamp(22px, 2.45vw, 38px); height: clamp(22px, 2.45vw, 38px);
   border: 0; border-radius: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, #fff 0 32%, #fffdf1 48%, #fff4c1 68%, rgba(255,232,125,.78) 82%, rgba(255,225,103,0) 100%);
-  box-shadow: 0 0 16px 6px rgba(255,247,190,.88), 0 0 42px 15px rgba(255,222,94,.52);
+  background: radial-gradient(circle, #fff 0 44%, #fffdf3 70%, rgba(255,243,183,.95) 100%);
+  box-shadow: 0 0 8px 3px rgba(255,247,190,.9), 0 0 22px 8px rgba(255,222,94,.42);
   animation: pixar-lamp-light 2.9s ease-in-out infinite;
 }
 .pixar .studio-intro b { display: none; }
@@ -186,5 +186,5 @@
   .brand-landing { min-height: 470px; padding: 88px 24px 52px; }
   .brand-landing-copy img { width: min(270px, 72vw); max-height: 96px; }
   .brand-landing.pixar { background-position: left center; }
-  .pixar .studio-intro i { left: 72.9%; top: 46.6%; }
+  .pixar .studio-intro i { left: 72.5%; top: 46.6%; }
 }
