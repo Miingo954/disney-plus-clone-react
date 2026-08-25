@@ -1,0 +1,91 @@
+.hub-logo-image {
+  display: block;
+  width: 76%;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.hub-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hub-card.disney .hub-logo-image { transform: translateY(1px); }
+.hub-card.pixar .hub-logo-image { transform: translateY(1px); }
+.hub-card.marvel .hub-logo-image { transform: translateY(0); }
+.hub-card.wars .hub-logo-image { transform: translateY(1px); }
+.hub-card.natgeo .hub-logo-image { transform: translateY(1px); }
+
+.hub-card.marvel .hub-logo-image { filter: none; }
+.hub-card.wars .hub-logo-image,
+.hub-card.natgeo .hub-logo-image { filter: brightness(0) invert(1); }
+
+.brand-landing {
+  min-height: 480px;
+  display: flex;
+  align-items: end;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 6vw 7vw;
+  background-color: #040714;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-trailer {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: max(100vw, 177.78vh);
+  height: max(100%, 56.25vw);
+  border: 0;
+  opacity: .84;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.brand-landing-copy { position: relative; z-index: 1; max-width: 490px; }
+.brand-landing-copy img {
+  display: block;
+  width: min(360px, 72vw);
+  max-height: 132px;
+  margin-bottom: 22px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
+}
+
+.brand-landing-copy p { color: #edf4ff; line-height: 1.55; }
+.brand-landing-copy .hero-meta { color: #bcd4fb; font-size: .82rem; }
+
+.brand-landing-copy .watch { margin-top: 14px; }
+
+.brand-landing.marvel {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 72% 45%, #9c1824 0, #4a0710 31%, #150207 68%, #040714 100%);
+}
+
+.brand-landing.marvel::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: repeating-linear-gradient(120deg, transparent 0 52px, rgba(255,255,255,.06) 54px 56px, transparent 58px 100px);
+  animation: marvel-sweep 12s linear infinite;
+}
+
+.brand-landing.marvel .brand-landing-copy { position: relative; z-index: 1; }
+.marvel-landing-logo { display: inline-flex; align-items: stretch; margin-bottom: 22px; color: #fff; font-family: Arial, sans-serif; font-weight: 900; font-size: clamp(1.35rem, 3.3vw, 2.5rem); letter-spacing: .04em; }
+.marvel-landing-logo b { padding: .27em .42em; background: #ed1d24; }
+.marvel-landing-logo span { padding: .27em .38em; border: 2px solid #fff; border-left: 0; }
+
+@keyframes marvel-sweep { to { transform: translateX(12%) translateY(-8%); } }
+
+@media (max-width: 700px) {
+  .brand-landing { min-height: 470px; padding: 88px 24px 52px; }
+  .brand-landing-copy img { width: min(270px, 72vw); max-height: 96px; }
+}

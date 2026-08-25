@@ -1,0 +1,88 @@
+.plus-hero { isolation: isolate; }
+.plus-hero:has(.hero-trailer) { background-image: none !important; }
+
+.plus-hero::before { display: none; }
+
+.hero-trailer,
+.hero-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-trailer {
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: max(100vw, 177.78vh);
+  height: max(100%, 56.25vw);
+  border: 0;
+  pointer-events: none;
+  opacity: .9;
+  transform: translate(-50%, -50%);
+}
+
+.hero-shade {
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(4, 7, 20, .92) 0%, rgba(4, 7, 20, .78) 28%, rgba(4, 7, 20, .32) 47%, transparent 68%);
+}
+
+.hero-title-logo {
+  display: block;
+  width: min(360px, 80vw);
+  max-height: 145px;
+  margin: 15px 0 16px;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, .5));
+}
+
+.hero-title-fallback {
+  margin: 14px 0;
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  font-weight: 700;
+}
+
+.plus-hero-copy { position: relative; z-index: 3; }
+
+.plus-hero .watch {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 162px;
+}
+
+.hero-carousel {
+  position: absolute;
+  z-index: 3;
+  right: 5vw;
+  bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.hero-carousel > button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 50%;
+  background: rgba(5, 10, 23, .55);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.hero-carousel > div { display: flex; gap: 8px; }
+.hero-carousel > div button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.45); }
+.hero-carousel > div button.active { width: 26px; background: #fff; }
+
+@media (max-width: 700px) {
+  .hero-trailer { opacity: .45; }
+  .hero-title-logo { width: min(270px, 75vw); max-height: 110px; }
+  .hero-carousel { right: 18px; bottom: 22px; gap: 8px; }
+  .hero-carousel > button { width: 30px; height: 30px; }
+}
