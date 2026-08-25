@@ -87,7 +87,7 @@
 
 /* Each hub is an original brand world—not a dimmed trailer frame. */
 .brand-landing.disney { background: radial-gradient(ellipse at 72% 38%, #3e87e6 0, #174a9d 29%, #071f5d 56%, #020817 100%); }
-.disney-production-frame { position:absolute; z-index:0; top:50%; left:50%; width:max(100vw,177.78vh); height:max(100%,56.25vw); border:0; pointer-events:none; opacity:0; transform:translate(-50%,-50%); animation:disney-video-reveal .7s ease 3.2s forwards; }
+.disney-production-frame { position:absolute; z-index:0; top:50%; left:50%; width:max(100vw,177.78vh); height:max(100%,56.25vw); border:0; pointer-events:none; opacity:0; transform:translate(-50%,-50%) scale(2.15); animation:disney-video-reveal .7s ease 3.2s forwards; }
 .brand-landing.disney::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(2,7,23,.9) 0%,rgba(2,7,23,.58) 30%,rgba(2,7,23,.05) 70%,rgba(2,7,23,.18) 100%); pointer-events:none; }
 .brand-landing.disney .studio-intro { display:none; }
 @keyframes disney-video-reveal { to { opacity:1; } }

@@ -97,15 +97,8 @@ function BrandLanding({brand,feature,openTitle}){
   observer.observe(landingRef.current)
   return()=>observer.disconnect()
  },[brand?.slug])
- useEffect(()=>{
-  if(brand?.slug!=='disney')return
-  const freezeFrame=window.setTimeout(()=>{
-   disneyIntroRef.current?.contentWindow?.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'*')
-  },16500)
-  return()=>window.clearTimeout(freezeFrame)
- },[brand?.slug])
  if(!brand)return null
- return <section ref={landingRef} className={`brand-landing ${brand.slug}`}>{brand.slug==='disney'&&<iframe ref={disneyIntroRef} className="disney-production-frame" title="Disney castle introduction" src="https://www.youtube-nocookie.com/embed/hPfLPpk6bd0?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&enablejsapi=1&start=0&end=17" allow="autoplay; encrypted-media"/>}<div className="studio-intro" aria-hidden="true"><span/><i ref={pixarLightRef}/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section ref={landingRef} className={`brand-landing ${brand.slug}`}>{brand.slug==='disney'&&<iframe ref={disneyIntroRef} className="disney-production-frame" title="Disney castle introduction" src="https://www.youtube-nocookie.com/embed/hPfLPpk6bd0?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&loop=1&playlist=hPfLPpk6bd0" allow="autoplay; encrypted-media"/>}<div className="studio-intro" aria-hidden="true"><span/><i ref={pixarLightRef}/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
