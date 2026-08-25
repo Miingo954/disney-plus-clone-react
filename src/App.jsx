@@ -76,8 +76,28 @@ export default function App(){
 }
 
 function BrandLanding({brand,feature,openTitle}){
+ const landingRef=useRef(null)
+ const pixarLightRef=useRef(null)
+ useEffect(()=>{
+  if(brand?.slug!=='pixar'||!landingRef.current||!pixarLightRef.current)return
+  const positionLamp=()=>{
+   const box=landingRef.current.getBoundingClientRect()
+   const scale=Math.max(box.width/1920,box.height/1080)
+   const renderedWidth=1920*scale
+   const renderedHeight=1080*scale
+   const mobile=window.matchMedia('(max-width: 700px)').matches
+   const cropX=mobile?0:(renderedWidth-box.width)/2
+   const cropY=(renderedHeight-box.height)/2
+   pixarLightRef.current.style.left=`${650*scale-cropX}px`
+   pixarLightRef.current.style.top=`${503*scale-cropY}px`
+  }
+  positionLamp()
+  const observer=new ResizeObserver(positionLamp)
+  observer.observe(landingRef.current)
+  return()=>observer.disconnect()
+ },[brand?.slug])
  if(!brand)return null
- return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section ref={landingRef} className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i ref={pixarLightRef}/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){

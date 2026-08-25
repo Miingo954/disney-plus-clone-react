@@ -186,5 +186,4 @@
   .brand-landing { min-height: 470px; padding: 88px 24px 52px; }
   .brand-landing-copy img { width: min(270px, 72vw); max-height: 96px; }
   .brand-landing.pixar { background-position: left center; }
-  .pixar .studio-intro i { left: 72.5%; top: 46.6%; }
 }
