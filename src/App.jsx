@@ -35,7 +35,7 @@ function HeroMedia({titles,openTitle,toggleList}){
 }
 
 export default function App(){
- const [menu,setMenu]=useState(false); const [active,setActive]=useState(''); const [liveRows,setLiveRows]=useState([]); const [selected,setSelected]=useState(null); const [myList,setMyList]=useState(()=>JSON.parse(localStorage.getItem('disney-plus-my-list')||'[]')); const [route,setRoute]=useState(()=>window.location.hash.replace(/^#\/?/,'')||'home'); const [profileOpen,setProfileOpen]=useState(false); const [signedOut,setSignedOut]=useState(false)
+ const [menu,setMenu]=useState(false); const [active,setActive]=useState(''); const [liveRows,setLiveRows]=useState([]); const [selected,setSelected]=useState(null); const [linkedTitle,setLinkedTitle]=useState(null); const [myList,setMyList]=useState(()=>JSON.parse(localStorage.getItem('disney-plus-my-list')||'[]')); const [route,setRoute]=useState(()=>window.location.hash.replace(/^#\/?/,'')||'home'); const [profileOpen,setProfileOpen]=useState(false); const [signedOut,setSignedOut]=useState(false)
  useEffect(()=>{
   const paths=['/discover/movie?with_companies=2&sort_by=popularity.desc','/discover/movie?with_companies=2&sort_by=primary_release_date.desc','/discover/tv?with_networks=2739&sort_by=popularity.desc','/discover/movie?with_companies=420&sort_by=popularity.desc','/discover/movie?with_companies=3&sort_by=popularity.desc','/discover/movie?with_companies=1&sort_by=popularity.desc','/discover/tv?with_networks=43&sort_by=popularity.desc','/discover/movie?with_companies=2&sort_by=popularity.desc']
   Promise.all(paths.map(path=>fetch(`/api/tmdb?path=${encodeURIComponent(path)}`).then(response=>response.json())))
@@ -53,11 +53,13 @@ export default function App(){
  },[])
  useEffect(()=>{const onRouteChange=()=>setRoute(window.location.hash.replace(/^#\/?/,'')||'home');window.addEventListener('hashchange',onRouteChange);return()=>window.removeEventListener('hashchange',onRouteChange)},[])
  useEffect(()=>localStorage.setItem('disney-plus-my-list',JSON.stringify(myList)),[myList])
+ const titleRouteId=route.startsWith('title/')?route.slice(6):''
+ useEffect(()=>{let cancelled=false;if(!titleRouteId)return;const catalogMatch=liveRows.flatMap(([,items])=>items).find(item=>item.id===titleRouteId);if(catalogMatch)return;const tmdbID=Number(titleRouteId.match(/(\d+)$/)?.[1]);if(!tmdbID)return;const type=/series|tv/.test(titleRouteId)?'tv':'movie';fetch(`/api/tmdb?path=${encodeURIComponent(`/${type}/${tmdbID}`)}`).then(response=>response.json()).then(data=>{if(!cancelled&&data?.id)setLinkedTitle({...toTitle(data),id:titleRouteId,tmdbID,type})}).catch(()=>{});return()=>{cancelled=true}},[titleRouteId,liveRows])
  const heroTitles=liveRows.find(([label])=>label==='Disney stories')?.[1]?.filter(item=>item.title!=='The Lion King').slice(0,5)||[{id:'movie-1108427',tmdbID:1108427,title:'Moana',year:'2024',overview:'Moana answers the call of the ocean and sets sail with Maui on an unforgettable journey across the seas of Oceania.',image:art[0],type:'movie'}]
  const toggleList=title=>setMyList(list=>list.some(item=>item.id===title.id)?list.filter(item=>item.id!==title.id):[...list,title])
  const catalogRows=liveRows.length?liveRows:rows
  const allTitles=catalogRows.flatMap(([,items])=>items.filter(item=>typeof item!=='string'))
- const routeTitle=route.startsWith('title/')?allTitles.find(item=>item.id===route.slice(6))||selected:null
+ const routeTitle=route.startsWith('title/')?allTitles.find(item=>item.id===titleRouteId)||(linkedTitle?.id===titleRouteId?linkedTitle:null)||selected:null
  const brand=route.startsWith('brand/')?route.slice(6):''
  const page=route.startsWith('title/')?'title':brand?'brand':route
  const openTitle=title=>{setSelected(title);window.location.hash=`/title/${title.id}`}
