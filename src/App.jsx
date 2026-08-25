@@ -97,7 +97,7 @@ function BrandLanding({brand,feature,openTitle}){
   return()=>observer.disconnect()
  },[brand?.slug])
  if(!brand)return null
- return <section ref={landingRef} className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i ref={pixarLightRef}/><b/></div>{brand.slug==='disney'&&<div className="disney-sky-stars" aria-hidden="true"><i/><b/></div>}<div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section ref={landingRef} className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i ref={pixarLightRef}/><b/></div>{brand.slug==='disney'&&<div className="disney-sky-stars" aria-hidden="true"><i/><span className="disney-small-star"/></div>}<div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
