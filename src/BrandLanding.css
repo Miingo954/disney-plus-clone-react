@@ -86,9 +86,10 @@
 @keyframes marvel-sweep { to { transform: translateX(12%) translateY(-8%); } }
 
 /* Each hub is an original brand world—not a dimmed trailer frame. */
-.brand-landing.disney { background:linear-gradient(90deg,rgba(2,7,23,.94) 0%,rgba(2,7,23,.7) 31%,rgba(2,7,23,.12) 69%,rgba(2,7,23,.34) 100%),url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg') center 46%/cover; }
+.brand-landing.disney { background:#020717; }
+.brand-landing.disney::before { content:''; position:absolute; inset:0; z-index:0; opacity:1; background:url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg') center 46%/cover; transform:scaleX(-1); animation:none; }
+.brand-landing.disney::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(2,7,23,.96) 0%,rgba(2,7,23,.76) 31%,rgba(2,7,23,.13) 71%,rgba(2,7,23,.28) 100%); }
 .brand-landing.disney .studio-intro { display:none; }
-.brand-landing.disney::before { content: ''; position: absolute; inset: 0; z-index: 0; opacity: .85; background-image: radial-gradient(circle at 14% 22%, #fff 0 1px, transparent 2px), radial-gradient(circle at 68% 18%, #c9e4ff 0 1px, transparent 2px), radial-gradient(circle at 83% 63%, #fff 0 1px, transparent 2px), radial-gradient(circle at 48% 72%, #7cb4ff 0 2px, transparent 3px); background-size: 170px 140px, 210px 190px, 260px 240px, 310px 260px; animation: disney-stars 18s linear infinite; }
 .brand-landing.pixar {
   background:
     linear-gradient(90deg, rgba(2, 5, 14, .93) 0%, rgba(3, 7, 17, .67) 29%, rgba(3, 7, 17, .12) 67%, rgba(2, 5, 14, .22) 100%),
