@@ -137,18 +137,18 @@
 }
 .pixar .studio-intro i {
   display: block;
-  left: 33.9%; top: 42.8%;
-  width: clamp(42px, 5.4vw, 84px); height: clamp(42px, 5.4vw, 84px);
-  border: 3px solid rgba(255, 252, 216, .96); border-radius: 50%;
+  left: 34.3%; top: 42.8%;
+  width: clamp(42px, 5.2vw, 80px); height: clamp(42px, 5.2vw, 80px);
+  border: 0; border-radius: 50%;
   transform: translate(-50%, -50%);
-  background: transparent;
-  box-shadow: 0 0 0 2px rgba(255,244,163,.4), 0 0 11px 3px rgba(255,239,137,.7), 0 0 24px 8px rgba(255,224,103,.34), inset 0 0 10px rgba(255,250,199,.24);
-  animation: pixar-lamp-ring 2.9s ease-in-out infinite;
+  background: radial-gradient(circle, #fff 0 32%, #fffdf1 48%, #fff4c1 68%, rgba(255,232,125,.78) 82%, rgba(255,225,103,0) 100%);
+  box-shadow: 0 0 16px 6px rgba(255,247,190,.88), 0 0 42px 15px rgba(255,222,94,.52);
+  animation: pixar-lamp-light 2.9s ease-in-out infinite;
 }
 .pixar .studio-intro b { display: none; }
-@keyframes pixar-lamp-ring {
-  0%,100% { opacity:.62; transform:translate(-50%,-50%) scale(.95); box-shadow:0 0 0 1px rgba(255,244,163,.22),0 0 9px 2px rgba(255,233,120,.42),0 0 17px 5px rgba(255,224,103,.2),inset 0 0 7px rgba(255,247,184,.14); }
-  50% { opacity:1; transform:translate(-50%,-50%) scale(1.04); box-shadow:0 0 0 3px rgba(255,244,163,.52),0 0 16px 5px rgba(255,233,120,.86),0 0 30px 10px rgba(255,224,103,.42),inset 0 0 12px rgba(255,247,184,.3); }
+@keyframes pixar-lamp-light {
+  0%,100% { opacity:.8; transform:translate(-50%,-50%) scale(.96); filter:brightness(.9); }
+  50% { opacity:1; transform:translate(-50%,-50%) scale(1.02); filter:brightness(1.16); }
 }
 .wars .studio-intro span { inset: -70%; background: repeating-radial-gradient(ellipse at center, transparent 0 20px, rgba(180,216,255,.25) 22px 24px, transparent 27px 46px); animation: wars-hyperspace 4.8s linear infinite; }
 .wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
@@ -186,5 +186,5 @@
   .brand-landing { min-height: 470px; padding: 88px 24px 52px; }
   .brand-landing-copy img { width: min(270px, 72vw); max-height: 96px; }
   .brand-landing.pixar { background-position: left center; }
-  .pixar .studio-intro i { left: 72.5%; top: 46.6%; }
+  .pixar .studio-intro i { left: 72.9%; top: 46.6%; }
 }
