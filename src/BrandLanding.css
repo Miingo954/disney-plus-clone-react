@@ -106,7 +106,19 @@
 .studio-intro { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .studio-intro span,.studio-intro i,.studio-intro b { position: absolute; display: block; }
 /* Studio-intro-inspired motion: a clean, original animation instead of embedded video. */
-.disney .studio-intro span { top: 17%; right: -7%; width: 54%; height: 2px; transform: rotate(-21deg); transform-origin: right; background: linear-gradient(90deg, transparent, #d8efff 38%, #fff 84%, transparent); box-shadow: 0 0 9px #fff, 0 0 25px #75b9ff; animation: disney-shooting-star 8s ease-in-out infinite; }
+.disney .studio-intro span {
+  right: 7%; bottom: 23%; width: min(47vw, 620px); height: min(24vw, 260px);
+  border: 2px solid transparent; border-top-color: rgba(210,237,255,.82); border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg); background: none;
+  box-shadow: 0 -5px 14px -7px #fff, 0 -8px 28px -14px #6eb5ff;
+  animation: none;
+}
+.disney .studio-intro span::after {
+  content: ''; position: absolute; width: 9px; height: 9px; border-radius: 50%;
+  left: 1%; top: -6px; background: #fff;
+  box-shadow: 0 0 7px 3px #fff, 0 0 22px 8px #74bcff, -28px 2px 11px -3px #cdeaff;
+  animation: disney-star-arc 7s cubic-bezier(.45,.04,.24,1) infinite;
+}
 .disney .studio-intro i { right: 11%; bottom: 17%; width: min(38vw,460px); height: min(18vw,205px); border: 2px solid rgba(202,231,255,.46); border-bottom: 0; border-radius: 50% 50% 0 0; filter: drop-shadow(0 0 16px rgba(101,180,255,.35)); animation: disney-castle-glow 8s ease-in-out infinite; }
 .disney .studio-intro b { right: 26%; bottom: 33%; width: 3px; height: 78px; background: #caeaff; box-shadow: 0 0 10px #fff, 23px 18px 0 -1px #caeaff, 50px 34px 0 -1px #caeaff; opacity: .72; }
 .pixar .studio-intro span {
@@ -129,7 +141,13 @@
 .wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
 .natgeo .studio-intro span { right: 14%; top: 18%; width: min(31vw,365px); height: min(20vw,235px); border: 7px solid #f3c52f; box-shadow: 0 0 32px rgba(243,197,47,.32); animation: natgeo-frame 7s ease-in-out infinite; }
 .natgeo .studio-intro i { right: 5%; top: 28%; width: min(38vw,450px); height: 2px; background: linear-gradient(90deg, transparent, #ffe177, transparent); box-shadow: 0 0 14px #ffdc57; animation: natgeo-scan 7s ease-in-out infinite; }
-@keyframes disney-shooting-star { 0%,12% { opacity:0; transform:translate3d(-55vw,-20vh,0) rotate(-21deg); } 24%,65% { opacity:1; transform:translate3d(0,0,0) rotate(-21deg); } 78%,100% { opacity:0; transform:translate3d(18vw,8vh,0) rotate(-21deg); } }
+@keyframes disney-star-arc {
+  0%,7% { opacity:0; transform:translate(0,0) scale(.3); }
+  12% { opacity:1; transform:translate(0,0) scale(1); }
+  42% { opacity:1; transform:translate(22vw,-8vw) scale(1); }
+  69% { opacity:1; transform:translate(41vw,2vw) scale(.9); }
+  78%,100% { opacity:0; transform:translate(47vw,7vw) scale(.25); }
+}
 @keyframes disney-castle-glow { 0%,25% { opacity:.1; transform:scale(.82); } 50%,72% { opacity:.9; transform:scale(1); } 100% { opacity:.15; transform:scale(.94); } }
 @keyframes pixar-spotlight { 0%,100% { transform:translate(15%,20%) scale(.65); opacity:.2; } 48% { transform:translate(0,0) scale(1); opacity:1; } }
 @keyframes pixar-beam { 0%,100% { opacity:.1; transform:rotate(42deg) translateY(80px); } 48% { opacity:.9; transform:rotate(17deg) translateY(0); } }
