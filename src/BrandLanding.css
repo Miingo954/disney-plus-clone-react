@@ -114,8 +114,8 @@
 .pixar .studio-intro span {
   display: block;
   inset: 0;
-  transform-origin: 32.8% 42%;
-  clip-path: polygon(32.8% 41.5%, 100% 52%, 100% 86%, 32.8% 49.5%);
+  transform-origin: 34.2% 42%;
+  clip-path: polygon(34.2% 41.8%, 100% 52%, 100% 86%, 34.2% 49.2%);
   background: linear-gradient(90deg, rgba(255, 250, 205, .38) 0%, rgba(255, 244, 191, .22) 30%, rgba(255, 235, 169, .07) 68%, transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
   mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
@@ -125,7 +125,7 @@
 }
 .pixar .studio-intro i {
   display: block;
-  left: 32.8%; top: 42%; width: min(8.5vw, 92px); aspect-ratio: 1;
+  left: 34.2%; top: 42%; width: min(7vw, 76px); aspect-ratio: 1;
   height: auto; border-radius: 50%; transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,239,.95) 0 5%, rgba(255,242,174,.44) 23%, rgba(255,225,123,.12) 47%, transparent 72%);
   mix-blend-mode: screen;
