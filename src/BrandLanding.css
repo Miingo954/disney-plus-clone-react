@@ -95,6 +95,26 @@
 .brand-landing.natgeo { background: radial-gradient(circle at 72% 43%, #936f23 0, #3f3514 28%, #11150e 62%, #030713 100%); }
 .brand-landing.natgeo::before { content: ''; position: absolute; inset: -15%; z-index: 0; opacity: .55; background: repeating-radial-gradient(ellipse at 77% 50%, transparent 0 42px, rgba(230,192,86,.24) 44px 46px, transparent 49px 95px); animation: natgeo-rings 18s ease-in-out infinite alternate; }
 .brand-landing.disney .brand-landing-copy,.brand-landing.pixar .brand-landing-copy,.brand-landing.wars .brand-landing-copy,.brand-landing.natgeo .brand-landing-copy { z-index: 1; }
+.studio-intro { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.studio-intro span,.studio-intro i,.studio-intro b { position: absolute; display: block; }
+/* Studio-intro-inspired motion: a clean, original animation instead of embedded video. */
+.disney .studio-intro span { top: 17%; right: -7%; width: 54%; height: 2px; transform: rotate(-21deg); transform-origin: right; background: linear-gradient(90deg, transparent, #d8efff 38%, #fff 84%, transparent); box-shadow: 0 0 9px #fff, 0 0 25px #75b9ff; animation: disney-shooting-star 8s ease-in-out infinite; }
+.disney .studio-intro i { right: 11%; bottom: 17%; width: min(38vw,460px); height: min(18vw,205px); border: 2px solid rgba(202,231,255,.46); border-bottom: 0; border-radius: 50% 50% 0 0; filter: drop-shadow(0 0 16px rgba(101,180,255,.35)); animation: disney-castle-glow 8s ease-in-out infinite; }
+.disney .studio-intro b { right: 26%; bottom: 33%; width: 3px; height: 78px; background: #caeaff; box-shadow: 0 0 10px #fff, 23px 18px 0 -1px #caeaff, 50px 34px 0 -1px #caeaff; opacity: .72; }
+.pixar .studio-intro span { right: 16%; bottom: -30%; width: 42vw; height: 42vw; border-radius: 50%; background: radial-gradient(circle, rgba(255,239,215,.68) 0, rgba(255,180,149,.2) 24%, transparent 67%); animation: pixar-spotlight 8s ease-in-out infinite; }
+.pixar .studio-intro i { right: 13%; top: 18%; width: 3px; height: 310px; background: rgba(255,230,205,.62); box-shadow: 25px 48px 0 -1px rgba(255,230,205,.42), -24px 104px 0 -1px rgba(255,230,205,.28); transform: rotate(17deg); animation: pixar-beam 8s ease-in-out infinite; }
+.wars .studio-intro span { inset: -70%; background: repeating-radial-gradient(ellipse at center, transparent 0 20px, rgba(180,216,255,.25) 22px 24px, transparent 27px 46px); animation: wars-hyperspace 4.8s linear infinite; }
+.wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
+.natgeo .studio-intro span { right: 14%; top: 18%; width: min(31vw,365px); height: min(20vw,235px); border: 7px solid #f3c52f; box-shadow: 0 0 32px rgba(243,197,47,.32); animation: natgeo-frame 7s ease-in-out infinite; }
+.natgeo .studio-intro i { right: 5%; top: 28%; width: min(38vw,450px); height: 2px; background: linear-gradient(90deg, transparent, #ffe177, transparent); box-shadow: 0 0 14px #ffdc57; animation: natgeo-scan 7s ease-in-out infinite; }
+@keyframes disney-shooting-star { 0%,12% { opacity:0; transform:translate3d(-55vw,-20vh,0) rotate(-21deg); } 24%,65% { opacity:1; transform:translate3d(0,0,0) rotate(-21deg); } 78%,100% { opacity:0; transform:translate3d(18vw,8vh,0) rotate(-21deg); } }
+@keyframes disney-castle-glow { 0%,25% { opacity:.1; transform:scale(.82); } 50%,72% { opacity:.9; transform:scale(1); } 100% { opacity:.15; transform:scale(.94); } }
+@keyframes pixar-spotlight { 0%,100% { transform:translate(15%,20%) scale(.65); opacity:.2; } 48% { transform:translate(0,0) scale(1); opacity:1; } }
+@keyframes pixar-beam { 0%,100% { opacity:.1; transform:rotate(42deg) translateY(80px); } 48% { opacity:.9; transform:rotate(17deg) translateY(0); } }
+@keyframes wars-hyperspace { to { transform:scale(1.65); opacity:0; } }
+@keyframes wars-lightspeed { 0%,30% { opacity:0; transform:translateX(-25vw); } 44%,70% { opacity:1; transform:translateX(0); } 100% { opacity:0; transform:translateX(25vw); } }
+@keyframes natgeo-frame { 0%,100% { opacity:.2; transform:scale(.82); } 43%,72% { opacity:1; transform:scale(1); } }
+@keyframes natgeo-scan { 0%,100% { opacity:0; transform:translateY(140px); } 45%,70% { opacity:1; transform:translateY(0); } }
 @keyframes disney-stars { to { transform: translate3d(-35px, 25px, 0); } }
 @keyframes pixar-glow { to { transform: rotate(8deg) scale(1.13); } }
 @keyframes wars-stars { to { transform: translate3d(-80px, 65px, 0); } }
