@@ -87,7 +87,7 @@
 
 /* Each hub is an original brand world—not a dimmed trailer frame. */
 .brand-landing.disney { background:#020717; }
-.brand-landing.disney::before { content:''; position:absolute; inset:0; z-index:0; opacity:1; background:url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg') center 46%/cover; transform:scaleX(-1); animation:none; }
+.brand-landing.disney::before { content:''; position:absolute; inset:0; z-index:0; opacity:1; background:url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg') center 30%/cover; transform:scaleX(-1); animation:none; }
 .brand-landing.disney::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(2,7,23,.96) 0%,rgba(2,7,23,.76) 31%,rgba(2,7,23,.13) 71%,rgba(2,7,23,.28) 100%); }
 .brand-landing.disney .studio-intro { display:none; }
 .disney-sky-stars { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
