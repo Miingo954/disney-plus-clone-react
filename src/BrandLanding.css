@@ -115,6 +115,15 @@
 @keyframes wars-lightspeed { 0%,30% { opacity:0; transform:translateX(-25vw); } 44%,70% { opacity:1; transform:translateX(0); } 100% { opacity:0; transform:translateX(25vw); } }
 @keyframes natgeo-frame { 0%,100% { opacity:.2; transform:scale(.82); } 43%,72% { opacity:1; transform:scale(1); } }
 @keyframes natgeo-scan { 0%,100% { opacity:0; transform:translateY(140px); } 45%,70% { opacity:1; transform:translateY(0); } }
+
+/* Star Wars gets cinematic high-resolution key art with infinite saber pulses. */
+.brand-landing.wars { background: linear-gradient(90deg, rgba(2,4,11,.92) 0%, rgba(2,4,11,.62) 36%, rgba(2,4,11,.2) 72%, rgba(2,4,11,.48) 100%), url('https://image.tmdb.org/t/p/original/yUiXA68FfQeA8cRBhd0Ao0jIRZt.jpg') center/cover; }
+.wars .studio-intro span { inset: 0; opacity: 1; background: radial-gradient(circle at 74% 48%, transparent 0 23%, rgba(0,0,0,.18) 53%, rgba(1,3,9,.82) 100%); animation: none; }
+.wars .studio-intro i,.wars .studio-intro b { top: 22%; width: 5px; height: min(42vw,460px); border-radius: 8px; transform-origin: center; }
+.wars .studio-intro i { right: 31%; background: #aeeaff; box-shadow: 0 0 7px #fff, 0 0 20px #53bfff, 0 0 46px #168aff; transform: rotate(28deg); animation: blue-saber 2.5s ease-in-out infinite; }
+.wars .studio-intro b { right: 17%; background: #ffd2d2; box-shadow: 0 0 7px #fff, 0 0 20px #ff4b4b, 0 0 46px #e00000; transform: rotate(-23deg); animation: red-saber 2.5s ease-in-out .55s infinite; }
+@keyframes blue-saber { 0%,100% { opacity:.66; filter:brightness(.8); } 50% { opacity:1; filter:brightness(1.45); } }
+@keyframes red-saber { 0%,100% { opacity:.62; filter:brightness(.8); } 50% { opacity:1; filter:brightness(1.5); } }
 @keyframes disney-stars { to { transform: translate3d(-35px, 25px, 0); } }
 @keyframes pixar-glow { to { transform: rotate(8deg) scale(1.13); } }
 @keyframes wars-stars { to { transform: translate3d(-80px, 65px, 0); } }
