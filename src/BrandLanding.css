@@ -92,11 +92,11 @@
 .brand-landing.disney .studio-intro { display:none; }
 .disney-sky-stars { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
 .disney-sky-stars i { position:absolute; display:block; border-radius:50%; }
-.disney-sky-stars i { left:88%; top:29%; width:12px; height:12px; background:#fff; box-shadow:0 0 9px 3px #fff,0 0 27px 10px rgba(117,195,255,.88); animation:disney-second-star 3.4s ease-in-out infinite; }
+.disney-sky-stars i { left:88%; top:17%; width:12px; height:12px; background:#fff; box-shadow:0 0 9px 3px #fff,0 0 27px 10px rgba(117,195,255,.88); animation:disney-second-star 3.4s ease-in-out infinite; }
 .disney-sky-stars i::before,.disney-sky-stars i::after { content:''; position:absolute; left:50%; top:50%; background:rgba(232,248,255,.95); transform:translate(-50%,-50%); box-shadow:0 0 8px #fff; }
 .disney-sky-stars i::before { width:46px; height:2px; }
 .disney-sky-stars i::after { width:2px; height:46px; }
-.disney-small-star { position:absolute; left:85.5%; top:35%; z-index:2; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 5px 2px #fff,0 0 16px 6px rgba(133,202,255,.8); }
+.disney-small-star { position:absolute; left:85.5%; top:23%; z-index:2; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 5px 2px #fff,0 0 16px 6px rgba(133,202,255,.8); }
 .disney-small-star::before,.disney-small-star::after { content:''; position:absolute; left:50%; top:50%; background:rgba(242,250,255,.98); transform:translate(-50%,-50%); box-shadow:0 0 6px #fff; }
 .disney-small-star::before { width:27px; height:1px; }
 .disney-small-star::after { width:1px; height:27px; }
