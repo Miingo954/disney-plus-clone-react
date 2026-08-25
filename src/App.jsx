@@ -76,10 +76,8 @@ export default function App(){
 }
 
 function BrandLanding({brand,feature,openTitle}){
- const [lampSpot,setLampSpot]=useState({x:73,y:48})
  if(!brand)return null
- const trackLamp=event=>{if(brand.slug!=='pixar')return;const box=event.currentTarget.getBoundingClientRect();setLampSpot({x:((event.clientX-box.left)/box.width)*100,y:((event.clientY-box.top)/box.height)*100})}
- return <section className={`brand-landing ${brand.slug}`} onPointerMove={trackLamp} style={brand.slug==='pixar'?{'--lamp-x':`${lampSpot.x}%`,'--lamp-y':`${lampSpot.y}%`}:undefined}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
