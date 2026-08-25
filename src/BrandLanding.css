@@ -96,7 +96,7 @@
 .disney-sky-stars i::before,.disney-sky-stars i::after { content:''; position:absolute; left:50%; top:50%; background:rgba(232,248,255,.95); transform:translate(-50%,-50%); box-shadow:0 0 8px #fff; }
 .disney-sky-stars i::before { width:46px; height:2px; }
 .disney-sky-stars i::after { width:2px; height:46px; }
-.disney-small-star { position:absolute; left:81%; top:38%; z-index:2; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 5px 2px #fff,0 0 16px 6px rgba(133,202,255,.8); }
+.disney-small-star { position:absolute; left:85.5%; top:35%; z-index:2; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 5px 2px #fff,0 0 16px 6px rgba(133,202,255,.8); }
 .disney-small-star::before,.disney-small-star::after { content:''; position:absolute; left:50%; top:50%; background:rgba(242,250,255,.98); transform:translate(-50%,-50%); box-shadow:0 0 6px #fff; }
 .disney-small-star::before { width:27px; height:1px; }
 .disney-small-star::after { width:1px; height:27px; }
