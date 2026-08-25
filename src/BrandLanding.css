@@ -114,26 +114,27 @@
 .pixar .studio-intro span {
   display: block;
   inset: 0;
-  transform-origin: 39% 48%;
-  clip-path: polygon(39% 47%, 100% 61%, 100% 94%, 39% 54%);
-  background: linear-gradient(90deg, rgba(255, 249, 194, .55) 0%, rgba(255, 243, 183, .26) 28%, rgba(255, 235, 166, .08) 69%, transparent 100%);
+  transform-origin: 32.8% 42%;
+  clip-path: polygon(32.8% 41.5%, 100% 52%, 100% 86%, 32.8% 49.5%);
+  background: linear-gradient(90deg, rgba(255, 250, 205, .38) 0%, rgba(255, 244, 191, .22) 30%, rgba(255, 235, 169, .07) 68%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
   mix-blend-mode: screen;
-  filter: blur(1px);
+  filter: blur(4px);
   animation: pixar-clean-beam 5.8s ease-in-out infinite;
 }
 .pixar .studio-intro i {
   display: block;
-  left: 39%; top: 48%; width: min(12vw, 120px); aspect-ratio: 1;
+  left: 32.8%; top: 42%; width: min(8.5vw, 92px); aspect-ratio: 1;
   height: auto; border-radius: 50%; transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,239,.95) 0 5%, rgba(255,242,174,.44) 23%, rgba(255,225,123,.12) 47%, transparent 72%);
   mix-blend-mode: screen;
   animation: pixar-bulb 3.4s ease-in-out infinite;
 }
 .pixar .studio-intro b { display: none; }
-.pixar-poster-stage { display: none; }
 @keyframes pixar-clean-beam {
-  0%, 100% { opacity: .27; transform: rotate(-1.5deg) scaleX(.96); }
-  50% { opacity: .48; transform: rotate(1.5deg) scaleX(1); }
+  0%, 100% { opacity: .2; transform: rotate(-.7deg) scaleX(.98); }
+  50% { opacity: .38; transform: rotate(.7deg) scaleX(1); }
 }
 @keyframes pixar-bulb {
   0%, 100% { opacity: .68; transform: translate(-50%, -50%) scale(.9); }

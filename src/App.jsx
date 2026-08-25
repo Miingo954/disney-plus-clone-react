@@ -77,7 +77,7 @@ export default function App(){
 
 function BrandLanding({brand,feature,openTitle}){
  if(!brand)return null
- return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div>{brand.slug==='pixar'&&<div className="pixar-poster-stage" aria-hidden="true"><img src="https://cdn.wallpapersafari.com/90/65/84LQpe.png" alt=""/><span className="pixar-bulb-glow"/></div>}<div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:brand.slug==='pixar'?null:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
