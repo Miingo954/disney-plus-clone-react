@@ -76,11 +76,8 @@ export default function App(){
 }
 
 function BrandLanding({brand,feature,openTitle}){
- const [media,setMedia]=useState(null)
- useEffect(()=>{setMedia(null);if(!feature||brand?.slug==='marvel')return;const kind=feature.type==='tv'?'tv':'movie';fetch(`/api/tmdb?path=${encodeURIComponent(`/${kind}/${feature.tmdbID}?append_to_response=videos`)}`).then(response=>response.json()).then(setMedia).catch(()=>{})},[brand?.slug,feature])
  if(!brand)return null
- const trailer=media?.videos?.results?.find(video=>video.site==='YouTube'&&['Trailer','Teaser','Clip'].includes(video.type))
- return <section className={`brand-landing ${brand.slug}`} style={brand.slug!=='marvel'&&feature?{backgroundImage:`linear-gradient(90deg,#040714 8%,rgba(4,7,20,.66) 46%,rgba(4,7,20,.1)),url(${feature.image})`}:undefined}>{trailer&&<iframe className="brand-trailer" title={`${feature.title} trailer`} src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&loop=1&playlist=${trailer.key}&controls=0&rel=0&cc_load_policy=0&iv_load_policy=3&playsinline=1`} allow="autoplay; encrypted-media; picture-in-picture"/>}<div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section className={`brand-landing ${brand.slug}`}><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){
