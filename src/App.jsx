@@ -76,23 +76,8 @@ export default function App(){
 }
 
 function BrandLanding({brand,feature,openTitle}){
- const pixarBeam=useRef(null)
  if(!brand)return null
- const movePixarLight=event=>{
-  if(brand.slug!=='pixar'||!pixarBeam.current)return
-  const bounds=event.currentTarget.getBoundingClientRect()
-  const sourceX=bounds.width*.342
-  const sourceY=bounds.height*.42
-  const targetX=Math.max(sourceX+80,event.clientX-bounds.left)
-  const targetY=Math.max(0,Math.min(bounds.height,event.clientY-bounds.top))
-  const distance=Math.hypot(targetX-sourceX,targetY-sourceY)
-  const angle=Math.atan2(targetY-sourceY,targetX-sourceX)*180/Math.PI
-  const beam=pixarBeam.current.style
-  beam.setProperty('--pixar-beam-width',`${distance}px`)
-  beam.setProperty('--pixar-beam-height',`${Math.max(130,Math.min(330,distance*.34))}px`)
-  beam.setProperty('--pixar-beam-angle',`${angle}deg`)
- }
- return <section className={`brand-landing ${brand.slug}`} onPointerMove={movePixarLight}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div>{brand.slug==='pixar'&&<span ref={pixarBeam} className="pixar-follow-light" aria-hidden="true"/>}<div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
+ return <section className={`brand-landing ${brand.slug}`}><div className="studio-intro" aria-hidden="true"><span/><i/><b/></div><div className="brand-landing-copy">{brand.slug==='marvel'?<div className="marvel-landing-logo"><b>MARVEL</b><span>STUDIOS</span></div>:<img src={brand.logo} alt={`${brand.name} logo`}/>}<p>{brand.tagline}</p>{feature&&<><p className="hero-meta">{feature.year} · Featured collection</p><button className="watch" onClick={()=>openTitle(feature)}>▶ WATCH FEATURED</button></>}</div></section>
 }
 
 function TitleDetails({title,close,toggleList,inList}){

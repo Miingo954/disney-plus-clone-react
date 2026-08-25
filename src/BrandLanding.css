@@ -88,17 +88,15 @@
 /* Each hub is an original brand world—not a dimmed trailer frame. */
 .brand-landing.disney { background: radial-gradient(circle at 74% 34%, #306bbd 0, #102f76 27%, #061a4b 53%, #030817 100%); }
 .brand-landing.disney::before { content: ''; position: absolute; inset: 0; z-index: 0; opacity: .85; background-image: radial-gradient(circle at 14% 22%, #fff 0 1px, transparent 2px), radial-gradient(circle at 68% 18%, #c9e4ff 0 1px, transparent 2px), radial-gradient(circle at 83% 63%, #fff 0 1px, transparent 2px), radial-gradient(circle at 48% 72%, #7cb4ff 0 2px, transparent 3px); background-size: 170px 140px, 210px 190px, 260px 240px, 310px 260px; animation: disney-stars 18s linear infinite; }
-.brand-landing.pixar {
-  background:
-    linear-gradient(90deg, rgba(2, 5, 14, .94) 0%, rgba(3, 7, 17, .72) 31%, rgba(3, 7, 17, .14) 67%, rgba(2, 5, 14, .34) 100%),
-    url('https://cdn.wallpapersafari.com/90/65/84LQpe.png') center / cover;
-}
+.brand-landing.pixar { background: radial-gradient(circle at 72% 40%, #617da5 0, #283852 30%, #111a2a 63%, #040714 100%); }
 .brand-landing.pixar::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -25%;
   z-index: 0;
-  background: linear-gradient(180deg, rgba(0, 4, 13, .12), rgba(0, 4, 13, .46));
+  opacity: .52;
+  background: repeating-radial-gradient(ellipse at 76% 54%, transparent 0 46px, rgba(221,236,255,.16) 48px 50px, transparent 53px 102px);
+  animation: pixar-glow 15s ease-in-out infinite alternate;
 }
 .brand-landing.wars { background: radial-gradient(circle at 72% 50%, #17366d 0, #080f26 31%, #02040b 70%); }
 .brand-landing.wars::before { content: ''; position: absolute; inset: -25%; z-index: 0; opacity: .8; background-image: radial-gradient(#e6f1ff 1px, transparent 1.4px), radial-gradient(#88b8ff 1px, transparent 1.4px); background-size: 43px 43px, 79px 79px; background-position: 0 0, 21px 29px; animation: wars-stars 32s linear infinite; }
@@ -123,45 +121,10 @@
   filter: blur(4px);
   animation: pixar-clean-beam 5.8s ease-in-out infinite;
 }
-.pixar-follow-light {
-  --pixar-beam-width: 68vw;
-  --pixar-beam-height: min(23vw, 260px);
-  --pixar-beam-angle: 8deg;
-  position: absolute;
-  z-index: 0;
-  left: 34.2%;
-  top: 42%;
-  width: var(--pixar-beam-width);
-  height: var(--pixar-beam-height);
-  transform: translateY(-50%) rotate(var(--pixar-beam-angle));
-  transform-origin: left center;
-  clip-path: polygon(0 43%, 100% 0, 100% 100%, 0 57%);
-  background: linear-gradient(90deg, rgba(255,253,222,.52), rgba(255,247,197,.26) 34%, rgba(255,237,176,.07) 71%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.68) 45%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.68) 45%, transparent 100%);
-  mix-blend-mode: screen;
-  filter: blur(3px);
-  pointer-events: none;
-  opacity: .5;
-  transition: width .22s ease-out, height .22s ease-out, transform .28s cubic-bezier(.2,.8,.2,1);
-}
 .pixar .studio-intro i {
-  display: block;
-  left: 34.2%; top: 42%; width: min(7vw, 76px); aspect-ratio: 1;
-  height: auto; border-radius: 50%; transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,239,.95) 0 5%, rgba(255,242,174,.44) 23%, rgba(255,225,123,.12) 47%, transparent 72%);
-  mix-blend-mode: screen;
-  animation: pixar-bulb 3.4s ease-in-out infinite;
+  display: none;
 }
 .pixar .studio-intro b { display: none; }
-@keyframes pixar-clean-beam {
-  0%, 100% { opacity: .2; transform: rotate(-.7deg) scaleX(.98); }
-  50% { opacity: .38; transform: rotate(.7deg) scaleX(1); }
-}
-@keyframes pixar-bulb {
-  0%, 100% { opacity: .68; transform: translate(-50%, -50%) scale(.9); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
-}
 .wars .studio-intro span { inset: -70%; background: repeating-radial-gradient(ellipse at center, transparent 0 20px, rgba(180,216,255,.25) 22px 24px, transparent 27px 46px); animation: wars-hyperspace 4.8s linear infinite; }
 .wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
 .natgeo .studio-intro span { right: 14%; top: 18%; width: min(31vw,365px); height: min(20vw,235px); border: 7px solid #f3c52f; box-shadow: 0 0 32px rgba(243,197,47,.32); animation: natgeo-frame 7s ease-in-out infinite; }
