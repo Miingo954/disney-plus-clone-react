@@ -12,15 +12,29 @@
   justify-content: center;
 }
 
-.hub-card.disney .hub-logo-image { transform: translateY(1px); }
-.hub-card.pixar .hub-logo-image { transform: translateY(1px); }
-.hub-card.marvel .hub-logo-image { transform: translateY(0); }
-.hub-card.wars .hub-logo-image { transform: translateY(1px); }
-.hub-card.natgeo .hub-logo-image { transform: translateY(1px); }
+.hub-card.disney .hub-logo-image {
+  transform: translateY(1px);
+}
+.hub-card.pixar .hub-logo-image {
+  transform: translateY(1px);
+}
+.hub-card.marvel .hub-logo-image {
+  transform: translateY(0);
+}
+.hub-card.wars .hub-logo-image {
+  transform: translateY(1px);
+}
+.hub-card.natgeo .hub-logo-image {
+  transform: translateY(1px);
+}
 
-.hub-card.marvel .hub-logo-image { filter: none; }
+.hub-card.marvel .hub-logo-image {
+  filter: none;
+}
 .hub-card.wars .hub-logo-image,
-.hub-card.natgeo .hub-logo-image { filter: brightness(0) invert(1); }
+.hub-card.natgeo .hub-logo-image {
+  filter: brightness(0) invert(1);
+}
 
 .brand-landing {
   min-height: 480px;
@@ -43,12 +57,16 @@
   width: max(100vw, 177.78vh);
   height: max(100%, 56.25vw);
   border: 0;
-  opacity: .84;
+  opacity: 0.84;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
 
-.brand-landing-copy { position: relative; z-index: 1; max-width: 490px; }
+.brand-landing-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 490px;
+}
 .brand-landing-copy img {
   display: block;
   width: min(360px, 72vw);
@@ -59,10 +77,18 @@
   filter: brightness(0) invert(1);
 }
 
-.brand-landing-copy p { color: #edf4ff; line-height: 1.55; }
-.brand-landing-copy .hero-meta { color: #bcd4fb; font-size: .82rem; }
+.brand-landing-copy p {
+  color: #edf4ff;
+  line-height: 1.55;
+}
+.brand-landing-copy .hero-meta {
+  color: #bcd4fb;
+  font-size: 0.82rem;
+}
 
-.brand-landing-copy .watch { margin-top: 14px; }
+.brand-landing-copy .watch {
+  margin-top: 14px;
+}
 
 .brand-landing.marvel {
   position: relative;
@@ -74,53 +100,382 @@
   content: '';
   position: absolute;
   inset: -30%;
-  background: repeating-linear-gradient(120deg, transparent 0 52px, rgba(255,255,255,.06) 54px 56px, transparent 58px 100px);
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0 52px,
+    rgba(255, 255, 255, 0.06) 54px 56px,
+    transparent 58px 100px
+  );
   animation: marvel-sweep 12s linear infinite;
 }
 
-.brand-landing.marvel .brand-landing-copy { position: relative; z-index: 1; }
-.marvel-landing-logo { display: inline-flex; align-items: stretch; margin-bottom: 22px; color: #fff; font-family: Arial, sans-serif; font-weight: 900; font-size: clamp(1.35rem, 3.3vw, 2.5rem); letter-spacing: .04em; }
-.marvel-landing-logo b { padding: .27em .42em; background: #ed1d24; }
-.marvel-landing-logo span { padding: .27em .38em; border: 2px solid #fff; border-left: 0; }
+.brand-landing.marvel .brand-landing-copy {
+  position: relative;
+  z-index: 1;
+}
+.marvel-landing-logo {
+  display: inline-flex;
+  align-items: stretch;
+  margin-bottom: 22px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.35rem, 3.3vw, 2.5rem);
+  letter-spacing: 0.04em;
+}
+.marvel-landing-logo b {
+  padding: 0.27em 0.42em;
+  background: #ed1d24;
+}
+.marvel-landing-logo span {
+  padding: 0.27em 0.38em;
+  border: 2px solid #fff;
+  border-left: 0;
+}
 
-@keyframes marvel-sweep { to { transform: translateX(12%) translateY(-8%); } }
+@keyframes marvel-sweep {
+  to {
+    transform: translateX(12%) translateY(-8%);
+  }
+}
 
 /* Each hub is an original brand world—not a dimmed trailer frame. */
-.brand-landing.disney { background:#020717; }
-.brand-landing.disney::before { content:''; position:absolute; inset:0; z-index:0; opacity:1; background:url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg') center 30%/cover; transform:scaleX(-1); animation:none; }
-.brand-landing.disney::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(2,7,23,.96) 0%,rgba(2,7,23,.76) 31%,rgba(2,7,23,.13) 71%,rgba(2,7,23,.28) 100%); }
-.brand-landing.disney .studio-intro { display:none; }
-.disney-sky-stars { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
-.disney-star-field { position:absolute; inset:0; overflow:hidden; }
-.disney-star-field::before { content:''; position:absolute; inset:-16%; opacity:.44; background:radial-gradient(ellipse at 76% 11%,rgba(76,141,255,.34),transparent 26%),radial-gradient(ellipse at 22% 69%,rgba(78,169,255,.2),transparent 28%),radial-gradient(ellipse at 68% 72%,rgba(117,98,255,.14),transparent 27%); filter:blur(20px); animation:disney-sky-drift 18s ease-in-out infinite alternate; }
-.disney-sky-dot { position:absolute; left:var(--x); top:var(--y); width:var(--size); height:var(--size); border-radius:50%; background:rgba(226,242,255,.88); box-shadow:0 0 6px rgba(176,224,255,.65); }
-.disney-sky-dot.twinkle { animation:disney-dot-twinkle 5.8s ease-in-out var(--delay) infinite; }
-.disney-shooting-star { position:absolute; top:20%; left:43%; width:5px; height:5px; border-radius:50%; background:#fff; opacity:0; box-shadow:0 0 7px 3px #fff,0 0 19px 6px rgba(152,219,255,.9); offset-path:path('M 0 0 Q 175 -145 350 0'); offset-rotate:auto; offset-distance:0%; animation:disney-shooting-star 11s linear var(--delay,2s) infinite; }
-.disney-shooting-star::before { content:''; position:absolute; left:50%; top:50%; width:25px; height:25px; transform:translate(-50%,-50%); background:linear-gradient(90deg,transparent 0%,rgba(236,250,255,.48) 34%,#fff 48%,#fff 52%,rgba(236,250,255,.48) 66%,transparent 100%); clip-path:polygon(50% 0%,55% 43%,100% 50%,55% 57%,50% 100%,45% 57%,0 50%,45% 43%); filter:drop-shadow(0 0 4px #fff); animation:disney-comet-sparkle .45s ease-in-out infinite alternate; }
-.disney-shooting-star::after { content:''; position:absolute; left:50%; top:50%; width:30px; height:30px; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.5),transparent 67%); animation:disney-comet-glow .55s ease-in-out infinite alternate; }
-.disney-pixie-trail { position:absolute; inset:0; }
-.disney-comet-dust { position:absolute; display:block; left:var(--dust-x); top:var(--dust-y); width:3px; height:3px; border-radius:50%; background:radial-gradient(circle,#fff 0 32%,#fff0d0 44%,transparent 72%); box-shadow:0 0 5px 2px rgba(231,245,255,.82); animation:disney-pixie-dust 4.3s ease-in-out var(--dust-delay) infinite; }
-.disney-comet-dust:nth-child(3n) { width:2px; height:2px; }.disney-comet-dust:nth-child(4n) { background:radial-gradient(circle,#fff 0 28%,#bde9ff 45%,transparent 75%); }
-.disney-sky-stars i { position:absolute; display:block; border-radius:50%; }
-.disney-sky-stars i { left:88%; top:17%; width:12px; height:12px; background:#fff; box-shadow:0 0 9px 3px #fff,0 0 27px 10px rgba(117,195,255,.88); animation:disney-second-star 3.4s ease-in-out infinite; }
-.disney-sky-stars i::before,.disney-sky-stars i::after { content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:linear-gradient(90deg,transparent 0%,rgba(236,249,255,.3) 27%,#fff 46%,#fff 54%,rgba(236,249,255,.3) 73%,transparent 100%); clip-path:polygon(50% 0%,54% 43%,100% 50%,54% 57%,50% 100%,46% 57%,0% 50%,46% 43%); filter:drop-shadow(0 0 5px #fff); }
-.disney-sky-stars i::before { width:50px; height:50px; }
-.disney-sky-stars i::after { width:24px; height:24px; transform:translate(-50%,-50%) rotate(45deg); opacity:.78; }
-.disney-small-star { position:absolute; left:85.5%; top:23%; z-index:2; width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 5px 2px #fff,0 0 16px 6px rgba(133,202,255,.8); }
-.disney-small-star::before,.disney-small-star::after { content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:linear-gradient(90deg,transparent 0%,rgba(241,250,255,.45) 28%,#fff 47%,#fff 53%,rgba(241,250,255,.45) 72%,transparent 100%); clip-path:polygon(50% 0%,54% 43%,100% 50%,54% 57%,50% 100%,46% 57%,0% 50%,46% 43%); filter:drop-shadow(0 0 4px #fff); }
-.disney-small-star::before { width:29px; height:29px; }
-.disney-small-star::after { width:14px; height:14px; transform:translate(-50%,-50%) rotate(45deg); opacity:.72; }
-@keyframes disney-second-star { 0%,100% { opacity:.56; transform:scale(.76); filter:brightness(.85); } 50% { opacity:1; transform:scale(1.22); filter:brightness(1.3); } }
-@keyframes disney-dot-twinkle { 0%,100% { opacity:.36; transform:scale(.75); } 50% { opacity:1; transform:scale(1.2); } }
-@keyframes disney-sky-drift { from { transform:translate3d(-1.5%,-1%,0) scale(1); } to { transform:translate3d(2%,1.5%,0) scale(1.04); } }
-@keyframes disney-shooting-star { 0%,50% { opacity:0; offset-distance:0%; } 54% { opacity:1; } 68% { opacity:1; offset-distance:76%; } 72%,100% { opacity:0; offset-distance:87%; } }
-@keyframes disney-pixie-dust { 0% { opacity:0; transform:translate3d(0,-5px,0) scale(.2); } 18% { opacity:.92; } 54% { opacity:.72; } 100% { opacity:0; transform:translate3d(var(--dust-drift),34px,0) scale(.55); } }
-@keyframes disney-comet-sparkle { from { opacity:.64; transform:translate(-50%,-50%) scale(.72); } to { opacity:1; transform:translate(-50%,-50%) scale(1.12); } }
-@keyframes disney-comet-glow { from { opacity:.42; transform:translate(-50%,-50%) scale(.72); } to { opacity:.9; transform:translate(-50%,-50%) scale(1.2); } }
-@media (max-width:700px) { .disney-sky-dot:nth-child(n+15) { display:none; } .disney-shooting-star { left:28%; top:20%; offset-path:path('M 0 0 Q 110 -100 225 0'); } .disney-comet-dust:nth-child(n+13) { display:none; } }
+.brand-landing.disney {
+  background: #020717;
+}
+.brand-landing.disney::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 1;
+  background: url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg')
+    center 30% / cover;
+  transform: scaleX(-1);
+  animation: none;
+}
+.brand-landing.disney::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 7, 23, 0.96) 0%,
+    rgba(2, 7, 23, 0.76) 31%,
+    rgba(2, 7, 23, 0.13) 71%,
+    rgba(2, 7, 23, 0.28) 100%
+  );
+}
+.brand-landing.disney .studio-intro {
+  display: none;
+}
+.disney-sky-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.disney-star-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.disney-star-field::before {
+  content: '';
+  position: absolute;
+  inset: -16%;
+  opacity: 0.44;
+  background:
+    radial-gradient(ellipse at 76% 11%, rgba(76, 141, 255, 0.34), transparent 26%),
+    radial-gradient(ellipse at 22% 69%, rgba(78, 169, 255, 0.2), transparent 28%),
+    radial-gradient(ellipse at 68% 72%, rgba(117, 98, 255, 0.14), transparent 27%);
+  filter: blur(20px);
+  animation: disney-sky-drift 18s ease-in-out infinite alternate;
+}
+.disney-sky-dot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: rgba(226, 242, 255, 0.88);
+  box-shadow: 0 0 6px rgba(176, 224, 255, 0.65);
+}
+.disney-sky-dot.twinkle {
+  animation: disney-dot-twinkle 5.8s ease-in-out var(--delay) infinite;
+}
+.disney-shooting-star {
+  position: absolute;
+  top: 20%;
+  left: 43%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  box-shadow:
+    0 0 7px 3px #fff,
+    0 0 19px 6px rgba(152, 219, 255, 0.9);
+  offset-path: path('M 0 0 Q 175 -145 350 0');
+  offset-rotate: auto;
+  offset-distance: 0%;
+  animation: disney-shooting-star 11s linear var(--delay, 2s) infinite;
+}
+.disney-shooting-star::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(236, 250, 255, 0.48) 34%,
+    #fff 48%,
+    #fff 52%,
+    rgba(236, 250, 255, 0.48) 66%,
+    transparent 100%
+  );
+  clip-path: polygon(50% 0%, 55% 43%, 100% 50%, 55% 57%, 50% 100%, 45% 57%, 0 50%, 45% 43%);
+  filter: drop-shadow(0 0 4px #fff);
+  animation: disney-comet-sparkle 0.45s ease-in-out infinite alternate;
+}
+.disney-shooting-star::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 67%);
+  animation: disney-comet-glow 0.55s ease-in-out infinite alternate;
+}
+.disney-pixie-trail {
+  position: absolute;
+  inset: 0;
+}
+.disney-comet-dust {
+  position: absolute;
+  display: block;
+  left: var(--dust-x);
+  top: var(--dust-y);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 32%, #fff0d0 44%, transparent 72%);
+  box-shadow: 0 0 5px 2px rgba(231, 245, 255, 0.82);
+  animation: disney-pixie-dust 4.3s ease-in-out var(--dust-delay) infinite;
+}
+.disney-comet-dust:nth-child(3n) {
+  width: 2px;
+  height: 2px;
+}
+.disney-comet-dust:nth-child(4n) {
+  background: radial-gradient(circle, #fff 0 28%, #bde9ff 45%, transparent 75%);
+}
+.disney-sky-stars i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+.disney-sky-stars i {
+  left: 88%;
+  top: 17%;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  box-shadow:
+    0 0 9px 3px #fff,
+    0 0 27px 10px rgba(117, 195, 255, 0.88);
+  animation: disney-second-star 3.4s ease-in-out infinite;
+}
+.disney-sky-stars i::before,
+.disney-sky-stars i::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(236, 249, 255, 0.3) 27%,
+    #fff 46%,
+    #fff 54%,
+    rgba(236, 249, 255, 0.3) 73%,
+    transparent 100%
+  );
+  clip-path: polygon(50% 0%, 54% 43%, 100% 50%, 54% 57%, 50% 100%, 46% 57%, 0% 50%, 46% 43%);
+  filter: drop-shadow(0 0 5px #fff);
+}
+.disney-sky-stars i::before {
+  width: 50px;
+  height: 50px;
+}
+.disney-sky-stars i::after {
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0.78;
+}
+.disney-small-star {
+  position: absolute;
+  left: 85.5%;
+  top: 23%;
+  z-index: 2;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 5px 2px #fff,
+    0 0 16px 6px rgba(133, 202, 255, 0.8);
+}
+.disney-small-star::before,
+.disney-small-star::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(241, 250, 255, 0.45) 28%,
+    #fff 47%,
+    #fff 53%,
+    rgba(241, 250, 255, 0.45) 72%,
+    transparent 100%
+  );
+  clip-path: polygon(50% 0%, 54% 43%, 100% 50%, 54% 57%, 50% 100%, 46% 57%, 0% 50%, 46% 43%);
+  filter: drop-shadow(0 0 4px #fff);
+}
+.disney-small-star::before {
+  width: 29px;
+  height: 29px;
+}
+.disney-small-star::after {
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0.72;
+}
+@keyframes disney-second-star {
+  0%,
+  100% {
+    opacity: 0.56;
+    transform: scale(0.76);
+    filter: brightness(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.22);
+    filter: brightness(1.3);
+  }
+}
+@keyframes disney-dot-twinkle {
+  0%,
+  100% {
+    opacity: 0.36;
+    transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+@keyframes disney-sky-drift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 1.5%, 0) scale(1.04);
+  }
+}
+@keyframes disney-shooting-star {
+  0%,
+  50% {
+    opacity: 0;
+    offset-distance: 0%;
+  }
+  54% {
+    opacity: 1;
+  }
+  68% {
+    opacity: 1;
+    offset-distance: 76%;
+  }
+  72%,
+  100% {
+    opacity: 0;
+    offset-distance: 87%;
+  }
+}
+@keyframes disney-pixie-dust {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -5px, 0) scale(0.2);
+  }
+  18% {
+    opacity: 0.92;
+  }
+  54% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dust-drift), 34px, 0) scale(0.55);
+  }
+}
+@keyframes disney-comet-sparkle {
+  from {
+    opacity: 0.64;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+@keyframes disney-comet-glow {
+  from {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  to {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+@media (max-width: 700px) {
+  .disney-sky-dot:nth-child(n + 15) {
+    display: none;
+  }
+  .disney-shooting-star {
+    left: 28%;
+    top: 20%;
+    offset-path: path('M 0 0 Q 110 -100 225 0');
+  }
+  .disney-comet-dust:nth-child(n + 13) {
+    display: none;
+  }
+}
 .brand-landing.pixar {
   background:
-    linear-gradient(90deg, rgba(2, 5, 14, .93) 0%, rgba(3, 7, 17, .67) 29%, rgba(3, 7, 17, .12) 67%, rgba(2, 5, 14, .22) 100%),
+    linear-gradient(
+      90deg,
+      rgba(2, 5, 14, 0.93) 0%,
+      rgba(3, 7, 17, 0.67) 29%,
+      rgba(3, 7, 17, 0.12) 67%,
+      rgba(2, 5, 14, 0.22) 100%
+    ),
     url('https://cdn.wallpapersafari.com/90/65/84LQpe.png') center / cover;
 }
 .brand-landing.pixar::before {
@@ -128,99 +483,464 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(180deg, rgba(2,5,14,.04), rgba(2,5,14,.34));
+  background: linear-gradient(180deg, rgba(2, 5, 14, 0.04), rgba(2, 5, 14, 0.34));
 }
-.brand-landing.wars { background: radial-gradient(circle at 72% 50%, #17366d 0, #080f26 31%, #02040b 70%); }
-.brand-landing.wars::before { content: ''; position: absolute; inset: -25%; z-index: 0; opacity: .8; background-image: radial-gradient(#e6f1ff 1px, transparent 1.4px), radial-gradient(#88b8ff 1px, transparent 1.4px); background-size: 43px 43px, 79px 79px; background-position: 0 0, 21px 29px; animation: wars-stars 32s linear infinite; }
-.brand-landing.natgeo { background: radial-gradient(circle at 72% 43%, #936f23 0, #3f3514 28%, #11150e 62%, #030713 100%); }
-.brand-landing.natgeo::before { content: ''; position: absolute; inset: -15%; z-index: 0; opacity: .55; background: repeating-radial-gradient(ellipse at 77% 50%, transparent 0 42px, rgba(230,192,86,.24) 44px 46px, transparent 49px 95px); animation: natgeo-rings 18s ease-in-out infinite alternate; }
-.brand-landing.disney .brand-landing-copy,.brand-landing.pixar .brand-landing-copy,.brand-landing.wars .brand-landing-copy,.brand-landing.natgeo .brand-landing-copy { z-index: 1; }
-.studio-intro { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.studio-intro span,.studio-intro i,.studio-intro b { position: absolute; display: block; }
+.brand-landing.wars {
+  background: radial-gradient(circle at 72% 50%, #17366d 0, #080f26 31%, #02040b 70%);
+}
+.brand-landing.wars::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  opacity: 0.8;
+  background-image:
+    radial-gradient(#e6f1ff 1px, transparent 1.4px), radial-gradient(#88b8ff 1px, transparent 1.4px);
+  background-size:
+    43px 43px,
+    79px 79px;
+  background-position:
+    0 0,
+    21px 29px;
+  animation: wars-stars 32s linear infinite;
+}
+.brand-landing.natgeo {
+  background: radial-gradient(circle at 72% 43%, #936f23 0, #3f3514 28%, #11150e 62%, #030713 100%);
+}
+.brand-landing.natgeo::before {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  opacity: 0.55;
+  background: repeating-radial-gradient(
+    ellipse at 77% 50%,
+    transparent 0 42px,
+    rgba(230, 192, 86, 0.24) 44px 46px,
+    transparent 49px 95px
+  );
+  animation: natgeo-rings 18s ease-in-out infinite alternate;
+}
+.brand-landing.disney .brand-landing-copy,
+.brand-landing.pixar .brand-landing-copy,
+.brand-landing.wars .brand-landing-copy,
+.brand-landing.natgeo .brand-landing-copy {
+  z-index: 1;
+}
+.studio-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.studio-intro span,
+.studio-intro i,
+.studio-intro b {
+  position: absolute;
+  display: block;
+}
 /* Studio-intro-inspired motion: a clean, original animation instead of embedded video. */
 .disney .studio-intro span {
-  right: 7%; bottom: 23%; width: min(47vw, 620px); height: min(24vw, 260px);
-  border: 2px solid transparent; border-top-color: rgba(210,237,255,.82); border-radius: 50% 50% 0 0;
-  transform: rotate(-4deg); background: none;
-  box-shadow: 0 -5px 14px -7px #fff, 0 -8px 28px -14px #6eb5ff;
+  right: 7%;
+  bottom: 23%;
+  width: min(47vw, 620px);
+  height: min(24vw, 260px);
+  border: 2px solid transparent;
+  border-top-color: rgba(210, 237, 255, 0.82);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+  background: none;
+  box-shadow:
+    0 -5px 14px -7px #fff,
+    0 -8px 28px -14px #6eb5ff;
   animation: none;
 }
 .disney .studio-intro span::after {
-  content: ''; position: absolute; width: 9px; height: 9px; border-radius: 50%;
-  left: 1%; top: -6px; background: #fff;
-  box-shadow: 0 0 7px 3px #fff, 0 0 22px 8px #74bcff, -28px 2px 11px -3px #cdeaff;
-  animation: disney-star-arc 7s cubic-bezier(.45,.04,.24,1) infinite;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  left: 1%;
+  top: -6px;
+  background: #fff;
+  box-shadow:
+    0 0 7px 3px #fff,
+    0 0 22px 8px #74bcff,
+    -28px 2px 11px -3px #cdeaff;
+  animation: disney-star-arc 7s cubic-bezier(0.45, 0.04, 0.24, 1) infinite;
 }
 .disney .studio-intro i {
-  right: 9%; bottom: 9%; width: min(43vw, 540px); height: min(23vw, 260px);
-  background: linear-gradient(180deg, rgba(19,74,161,.95), rgba(5,24,76,.98));
-  clip-path: polygon(0 100%,0 74%,7% 74%,7% 62%,12% 62%,12% 71%,19% 71%,19% 58%,24% 58%,24% 67%,31% 67%,31% 47%,35% 47%,35% 58%,40% 58%,40% 30%,45% 30%,45% 57%,51% 57%,51% 42%,56% 42%,56% 65%,63% 65%,63% 55%,68% 55%,68% 70%,76% 70%,76% 60%,81% 60%,81% 72%,89% 72%,89% 64%,94% 64%,94% 76%,100% 76%,100% 100%);
-  filter: drop-shadow(0 0 20px rgba(117,188,255,.55));
+  right: 9%;
+  bottom: 9%;
+  width: min(43vw, 540px);
+  height: min(23vw, 260px);
+  background: linear-gradient(180deg, rgba(19, 74, 161, 0.95), rgba(5, 24, 76, 0.98));
+  clip-path: polygon(
+    0 100%,
+    0 74%,
+    7% 74%,
+    7% 62%,
+    12% 62%,
+    12% 71%,
+    19% 71%,
+    19% 58%,
+    24% 58%,
+    24% 67%,
+    31% 67%,
+    31% 47%,
+    35% 47%,
+    35% 58%,
+    40% 58%,
+    40% 30%,
+    45% 30%,
+    45% 57%,
+    51% 57%,
+    51% 42%,
+    56% 42%,
+    56% 65%,
+    63% 65%,
+    63% 55%,
+    68% 55%,
+    68% 70%,
+    76% 70%,
+    76% 60%,
+    81% 60%,
+    81% 72%,
+    89% 72%,
+    89% 64%,
+    94% 64%,
+    94% 76%,
+    100% 76%,
+    100% 100%
+  );
+  filter: drop-shadow(0 0 20px rgba(117, 188, 255, 0.55));
   animation: disney-castle-glow 8s ease-in-out infinite;
 }
-.disney .studio-intro i::before { content:''; position:absolute; inset:38% 15% 0; background: repeating-linear-gradient(90deg, transparent 0 23px, rgba(185,224,255,.72) 24px 27px, transparent 28px 47px); opacity:.5; }
-.disney .studio-intro b { right: 28%; bottom: 26%; width: 4px; height: min(12vw,130px); background: #d9f1ff; box-shadow: 0 0 9px #fff, 30px 30px 0 -1px #bce7ff, -35px 38px 0 -1px #bce7ff; opacity: .88; }
+.disney .studio-intro i::before {
+  content: '';
+  position: absolute;
+  inset: 38% 15% 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 23px,
+    rgba(185, 224, 255, 0.72) 24px 27px,
+    transparent 28px 47px
+  );
+  opacity: 0.5;
+}
+.disney .studio-intro b {
+  right: 28%;
+  bottom: 26%;
+  width: 4px;
+  height: min(12vw, 130px);
+  background: #d9f1ff;
+  box-shadow:
+    0 0 9px #fff,
+    30px 30px 0 -1px #bce7ff,
+    -35px 38px 0 -1px #bce7ff;
+  opacity: 0.88;
+}
 .pixar .studio-intro span {
   display: none;
   inset: 0;
   transform-origin: 34.2% 42%;
   clip-path: polygon(34.2% 41.8%, 100% 52%, 100% 86%, 34.2% 49.2%);
-  background: linear-gradient(90deg, rgba(255, 250, 205, .38) 0%, rgba(255, 244, 191, .22) 30%, rgba(255, 235, 169, .07) 68%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 40%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 250, 205, 0.38) 0%,
+    rgba(255, 244, 191, 0.22) 30%,
+    rgba(255, 235, 169, 0.07) 68%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.7) 40%, transparent 100%);
   mix-blend-mode: screen;
   filter: blur(4px);
   animation: pixar-clean-beam 5.8s ease-in-out infinite;
 }
 .pixar .studio-intro i {
   display: block;
-  left: 33.85%; top: 42.8%;
-  width: clamp(22px, 2.45vw, 38px); height: clamp(22px, 2.45vw, 38px);
-  border: 0; border-radius: 50%;
+  left: 33.85%;
+  top: 42.8%;
+  width: clamp(22px, 2.45vw, 38px);
+  height: clamp(22px, 2.45vw, 38px);
+  border: 0;
+  border-radius: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, #fff 0 44%, #fffdf3 70%, rgba(255,243,183,.95) 100%);
-  box-shadow: 0 0 8px 3px rgba(255,247,190,.9), 0 0 22px 8px rgba(255,222,94,.42);
+  background: radial-gradient(circle, #fff 0 44%, #fffdf3 70%, rgba(255, 243, 183, 0.95) 100%);
+  box-shadow:
+    0 0 8px 3px rgba(255, 247, 190, 0.9),
+    0 0 22px 8px rgba(255, 222, 94, 0.42);
   animation: pixar-lamp-light 2.9s ease-in-out infinite;
 }
-.pixar .studio-intro b { display: none; }
+.pixar .studio-intro b {
+  display: none;
+}
 @keyframes pixar-lamp-light {
-  0%,100% { opacity:.8; transform:translate(-50%,-50%) scale(.96); filter:brightness(.9); }
-  50% { opacity:1; transform:translate(-50%,-50%) scale(1.02); filter:brightness(1.16); }
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.96);
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+    filter: brightness(1.16);
+  }
 }
-.wars .studio-intro span { inset: -70%; background: repeating-radial-gradient(ellipse at center, transparent 0 20px, rgba(180,216,255,.25) 22px 24px, transparent 27px 46px); animation: wars-hyperspace 4.8s linear infinite; }
-.wars .studio-intro i { right: 16%; top: 46%; width: min(45vw,540px); height: 2px; background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent); box-shadow: 0 0 15px #73acff; animation: wars-lightspeed 4.8s linear infinite; }
-.natgeo .studio-intro span { right: 14%; top: 18%; width: min(31vw,365px); height: min(20vw,235px); border: 7px solid #f3c52f; box-shadow: 0 0 32px rgba(243,197,47,.32); animation: natgeo-frame 7s ease-in-out infinite; }
-.natgeo .studio-intro i { right: 5%; top: 28%; width: min(38vw,450px); height: 2px; background: linear-gradient(90deg, transparent, #ffe177, transparent); box-shadow: 0 0 14px #ffdc57; animation: natgeo-scan 7s ease-in-out infinite; }
+.wars .studio-intro span {
+  inset: -70%;
+  background: repeating-radial-gradient(
+    ellipse at center,
+    transparent 0 20px,
+    rgba(180, 216, 255, 0.25) 22px 24px,
+    transparent 27px 46px
+  );
+  animation: wars-hyperspace 4.8s linear infinite;
+}
+.wars .studio-intro i {
+  right: 16%;
+  top: 46%;
+  width: min(45vw, 540px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7ebcff, #fff, transparent);
+  box-shadow: 0 0 15px #73acff;
+  animation: wars-lightspeed 4.8s linear infinite;
+}
+.natgeo .studio-intro span {
+  right: 14%;
+  top: 18%;
+  width: min(31vw, 365px);
+  height: min(20vw, 235px);
+  border: 7px solid #f3c52f;
+  box-shadow: 0 0 32px rgba(243, 197, 47, 0.32);
+  animation: natgeo-frame 7s ease-in-out infinite;
+}
+.natgeo .studio-intro i {
+  right: 5%;
+  top: 28%;
+  width: min(38vw, 450px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffe177, transparent);
+  box-shadow: 0 0 14px #ffdc57;
+  animation: natgeo-scan 7s ease-in-out infinite;
+}
 @keyframes disney-star-arc {
-  0%,7% { opacity:0; transform:translate(0,0) scale(.3); }
-  12% { opacity:1; transform:translate(0,0) scale(1); }
-  42% { opacity:1; transform:translate(22vw,-8vw) scale(1); }
-  69% { opacity:1; transform:translate(41vw,2vw) scale(.9); }
-  78%,100% { opacity:0; transform:translate(47vw,7vw) scale(.25); }
+  0%,
+  7% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  12% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  42% {
+    opacity: 1;
+    transform: translate(22vw, -8vw) scale(1);
+  }
+  69% {
+    opacity: 1;
+    transform: translate(41vw, 2vw) scale(0.9);
+  }
+  78%,
+  100% {
+    opacity: 0;
+    transform: translate(47vw, 7vw) scale(0.25);
+  }
 }
-@keyframes disney-castle-glow { 0%,25% { opacity:.1; transform:scale(.82); } 50%,72% { opacity:.9; transform:scale(1); } 100% { opacity:.15; transform:scale(.94); } }
-@keyframes pixar-spotlight { 0%,100% { transform:translate(15%,20%) scale(.65); opacity:.2; } 48% { transform:translate(0,0) scale(1); opacity:1; } }
-@keyframes pixar-beam { 0%,100% { opacity:.1; transform:rotate(42deg) translateY(80px); } 48% { opacity:.9; transform:rotate(17deg) translateY(0); } }
-@keyframes wars-hyperspace { to { transform:scale(1.65); opacity:0; } }
-@keyframes wars-lightspeed { 0%,30% { opacity:0; transform:translateX(-25vw); } 44%,70% { opacity:1; transform:translateX(0); } 100% { opacity:0; transform:translateX(25vw); } }
-@keyframes natgeo-frame { 0%,100% { opacity:.2; transform:scale(.82); } 43%,72% { opacity:1; transform:scale(1); } }
-@keyframes natgeo-scan { 0%,100% { opacity:0; transform:translateY(140px); } 45%,70% { opacity:1; transform:translateY(0); } }
+@keyframes disney-castle-glow {
+  0%,
+  25% {
+    opacity: 0.1;
+    transform: scale(0.82);
+  }
+  50%,
+  72% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.15;
+    transform: scale(0.94);
+  }
+}
+@keyframes pixar-spotlight {
+  0%,
+  100% {
+    transform: translate(15%, 20%) scale(0.65);
+    opacity: 0.2;
+  }
+  48% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes pixar-beam {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: rotate(42deg) translateY(80px);
+  }
+  48% {
+    opacity: 0.9;
+    transform: rotate(17deg) translateY(0);
+  }
+}
+@keyframes wars-hyperspace {
+  to {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+@keyframes wars-lightspeed {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateX(-25vw);
+  }
+  44%,
+  70% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(25vw);
+  }
+}
+@keyframes natgeo-frame {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.82);
+  }
+  43%,
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes natgeo-scan {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(140px);
+  }
+  45%,
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Star Wars gets cinematic high-resolution key art with infinite saber pulses. */
-.brand-landing.wars { background: linear-gradient(90deg, rgba(2,4,11,.92) 0%, rgba(2,4,11,.62) 36%, rgba(2,4,11,.2) 72%, rgba(2,4,11,.48) 100%), url('https://image.tmdb.org/t/p/original/yUiXA68FfQeA8cRBhd0Ao0jIRZt.jpg') center/cover; }
-.wars .studio-intro span { inset: 0; opacity: 1; background: radial-gradient(circle at 74% 48%, transparent 0 23%, rgba(0,0,0,.18) 53%, rgba(1,3,9,.82) 100%); animation: none; }
-.wars .studio-intro i,.wars .studio-intro b { top: 22%; width: 5px; height: min(42vw,460px); border-radius: 8px; transform-origin: center; }
-.wars .studio-intro i { right: 31%; background: #aeeaff; box-shadow: 0 0 7px #fff, 0 0 20px #53bfff, 0 0 46px #168aff; transform: rotate(28deg); animation: blue-saber 2.5s ease-in-out infinite; }
-.wars .studio-intro b { right: 17%; background: #ffd2d2; box-shadow: 0 0 7px #fff, 0 0 20px #ff4b4b, 0 0 46px #e00000; transform: rotate(-23deg); animation: red-saber 2.5s ease-in-out .55s infinite; }
-@keyframes blue-saber { 0%,100% { opacity:.66; filter:brightness(.8); } 50% { opacity:1; filter:brightness(1.45); } }
-@keyframes red-saber { 0%,100% { opacity:.62; filter:brightness(.8); } 50% { opacity:1; filter:brightness(1.5); } }
-@keyframes disney-stars { to { transform: translate3d(-35px, 25px, 0); } }
-@keyframes pixar-glow { to { transform: rotate(8deg) scale(1.13); } }
-@keyframes wars-stars { to { transform: translate3d(-80px, 65px, 0); } }
-@keyframes natgeo-rings { to { transform: scale(1.12) rotate(5deg); } }
+.brand-landing.wars {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 4, 11, 0.92) 0%,
+      rgba(2, 4, 11, 0.62) 36%,
+      rgba(2, 4, 11, 0.2) 72%,
+      rgba(2, 4, 11, 0.48) 100%
+    ),
+    url('https://image.tmdb.org/t/p/original/yUiXA68FfQeA8cRBhd0Ao0jIRZt.jpg') center/cover;
+}
+.wars .studio-intro span {
+  inset: 0;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 74% 48%,
+    transparent 0 23%,
+    rgba(0, 0, 0, 0.18) 53%,
+    rgba(1, 3, 9, 0.82) 100%
+  );
+  animation: none;
+}
+.wars .studio-intro i,
+.wars .studio-intro b {
+  top: 22%;
+  width: 5px;
+  height: min(42vw, 460px);
+  border-radius: 8px;
+  transform-origin: center;
+}
+.wars .studio-intro i {
+  right: 31%;
+  background: #aeeaff;
+  box-shadow:
+    0 0 7px #fff,
+    0 0 20px #53bfff,
+    0 0 46px #168aff;
+  transform: rotate(28deg);
+  animation: blue-saber 2.5s ease-in-out infinite;
+}
+.wars .studio-intro b {
+  right: 17%;
+  background: #ffd2d2;
+  box-shadow:
+    0 0 7px #fff,
+    0 0 20px #ff4b4b,
+    0 0 46px #e00000;
+  transform: rotate(-23deg);
+  animation: red-saber 2.5s ease-in-out 0.55s infinite;
+}
+@keyframes blue-saber {
+  0%,
+  100% {
+    opacity: 0.66;
+    filter: brightness(0.8);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.45);
+  }
+}
+@keyframes red-saber {
+  0%,
+  100% {
+    opacity: 0.62;
+    filter: brightness(0.8);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+}
+@keyframes disney-stars {
+  to {
+    transform: translate3d(-35px, 25px, 0);
+  }
+}
+@keyframes pixar-glow {
+  to {
+    transform: rotate(8deg) scale(1.13);
+  }
+}
+@keyframes wars-stars {
+  to {
+    transform: translate3d(-80px, 65px, 0);
+  }
+}
+@keyframes natgeo-rings {
+  to {
+    transform: scale(1.12) rotate(5deg);
+  }
+}
 
 @media (max-width: 700px) {
-  .brand-landing { min-height: 470px; padding: 88px 24px 52px; }
-  .brand-landing-copy img { width: min(270px, 72vw); max-height: 96px; }
-  .brand-landing.pixar { background-position: left center; }
+  .brand-landing {
+    min-height: 470px;
+    padding: 88px 24px 52px;
+  }
+  .brand-landing-copy img {
+    width: min(270px, 72vw);
+    max-height: 96px;
+  }
+  .brand-landing.pixar {
+    background-position: left center;
+  }
 }

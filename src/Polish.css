@@ -1,15 +1,30 @@
 /* Calm motion and Disney+ styled scrollbars. The motion is intentional on hover only. */
-.poster-row { scrollbar-width: none; }
-.poster-row::-webkit-scrollbar { display: none; }
+.poster-row {
+  scrollbar-width: none;
+}
+.poster-row::-webkit-scrollbar {
+  display: none;
+}
 
 .hub-card {
   animation: none;
   background-size: 100% 100%;
 }
 
-.hub-card:hover { transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease; }
-.wide-card { will-change: transform; }
-.wide-card:hover { transition: transform .22s ease, outline-color .22s ease; }
+.hub-card:hover {
+  transition:
+    transform 0.26s ease,
+    box-shadow 0.26s ease,
+    border-color 0.26s ease;
+}
+.wide-card {
+  will-change: transform;
+}
+.wide-card:hover {
+  transition:
+    transform 0.22s ease,
+    outline-color 0.22s ease;
+}
 
 /* Brand-first hub tiles, inspired by the way Disney+ groups its catalog. */
 .hub-card {
@@ -19,32 +34,93 @@
   text-align: center;
 }
 
-.hub-card small { display: none; }
+.hub-card small {
+  display: none;
+}
 .hub-logo {
   display: block;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.45rem);
   font-weight: 800;
-  letter-spacing: .04em;
-  line-height: .92;
-  text-shadow: 0 2px 12px rgba(0,0,0,.52);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.52);
 }
 
-.hub-logo.disney { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.55rem, 3vw, 2.5rem); font-style: italic; letter-spacing: -.08em; }
-.hub-logo.pixar { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: .18em; }
-.hub-logo.wars { font-size: clamp(1.08rem, 2vw, 1.65rem); font-weight: 900; letter-spacing: -.06em; }
-.hub-logo.marvel { display: flex; align-items: stretch; justify-content: center; font-size: clamp(.8rem, 1.4vw, 1.05rem); letter-spacing: .04em; }
-.hub-logo.marvel b { background: #ed1d24; padding: .27em .4em; }
-.hub-logo.marvel i { border: 1px solid #fff; border-left: 0; font-style: normal; padding: .27em .35em; }
-.hub-logo.natgeo { font-size: clamp(.63rem, 1vw, .83rem); letter-spacing: .12em; line-height: 1.08; text-align: left; }
-.natgeo-frame { display: inline-block; width: 1.1em; height: 1.55em; margin-right: .48em; vertical-align: middle; border: .16em solid #ffcf29; }
+.hub-logo.disney {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+  font-style: italic;
+  letter-spacing: -0.08em;
+}
+.hub-logo.pixar {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  letter-spacing: 0.18em;
+}
+.hub-logo.wars {
+  font-size: clamp(1.08rem, 2vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+.hub-logo.marvel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  font-size: clamp(0.8rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.04em;
+}
+.hub-logo.marvel b {
+  background: #ed1d24;
+  padding: 0.27em 0.4em;
+}
+.hub-logo.marvel i {
+  border: 1px solid #fff;
+  border-left: 0;
+  font-style: normal;
+  padding: 0.27em 0.35em;
+}
+.hub-logo.natgeo {
+  font-size: clamp(0.63rem, 1vw, 0.83rem);
+  letter-spacing: 0.12em;
+  line-height: 1.08;
+  text-align: left;
+}
+.natgeo-frame {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.55em;
+  margin-right: 0.48em;
+  vertical-align: middle;
+  border: 0.16em solid #ffcf29;
+}
 
-.hub-card.disney { background: radial-gradient(circle at 55% 14%, #5294ed 0, transparent 18%), linear-gradient(135deg,#1a4d9e,#061839); }
-.hub-card.pixar { background: radial-gradient(circle at 28% 78%,#f09b92 0,transparent 22%),linear-gradient(135deg,#a62d4d,#270c2a); }
-.hub-card.marvel { background: radial-gradient(circle at 68% 20%,#fb5c54 0,transparent 21%),linear-gradient(135deg,#60111c,#20030b); }
-.hub-card.wars { background: radial-gradient(circle at 55% 0,#4e87c9 0,transparent 23%),linear-gradient(135deg,#102450,#02040b); }
-.hub-card.natgeo { background: radial-gradient(circle at 65% 60%,#d7a62e 0,transparent 24%),linear-gradient(135deg,#795100,#251b04); }
+.hub-card.disney {
+  background:
+    radial-gradient(circle at 55% 14%, #5294ed 0, transparent 18%),
+    linear-gradient(135deg, #1a4d9e, #061839);
+}
+.hub-card.pixar {
+  background:
+    radial-gradient(circle at 28% 78%, #f09b92 0, transparent 22%),
+    linear-gradient(135deg, #a62d4d, #270c2a);
+}
+.hub-card.marvel {
+  background:
+    radial-gradient(circle at 68% 20%, #fb5c54 0, transparent 21%),
+    linear-gradient(135deg, #60111c, #20030b);
+}
+.hub-card.wars {
+  background:
+    radial-gradient(circle at 55% 0, #4e87c9 0, transparent 23%),
+    linear-gradient(135deg, #102450, #02040b);
+}
+.hub-card.natgeo {
+  background:
+    radial-gradient(circle at 65% 60%, #d7a62e 0, transparent 24%),
+    linear-gradient(135deg, #795100, #251b04);
+}
 
 .plus-nav .profile {
   display: grid;
@@ -52,23 +128,57 @@
   margin-left: auto;
   border: 0;
   background: linear-gradient(135deg, #3d8fe9, #8565d8);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.48);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.48);
   font-family: Georgia, serif;
   font-weight: 700;
 }
 
-.menu-toggle { display: none; }
+.menu-toggle {
+  display: none;
+}
 
-.plus-nav nav a.current { color: #fff; }
-.plus-nav nav a.current::after { content: ''; display: block; height: 2px; margin-top: 6px; background: #fff; border-radius: 2px; }
+.plus-nav nav a.current {
+  color: #fff;
+}
+.plus-nav nav a.current::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 6px;
+  background: #fff;
+  border-radius: 2px;
+}
 
-.wide-card { flex-basis: clamp(145px, 15.5vw, 220px); background: transparent; border-radius: 8px; }
-.wide-card img { height: clamp(220px, 24vw, 316px); border-radius: 8px; object-fit: cover; }
-.wide-card span { display: none; }
-.wide-card:hover { transform: scale(1.045); outline: 2px solid #eef5ff; }
-.browse-heading { padding: 52px 4vw 8px; }
-.browse-heading h1 { margin: 8px 0; text-transform: capitalize; font-size: clamp(2.1rem, 4vw, 3.5rem); }
-.empty-list { color: #b9c6d9; margin: 0; padding: 16px 0; }
+.wide-card {
+  flex-basis: clamp(145px, 15.5vw, 220px);
+  background: transparent;
+  border-radius: 8px;
+}
+.wide-card img {
+  height: clamp(220px, 24vw, 316px);
+  border-radius: 8px;
+  object-fit: cover;
+}
+.wide-card span {
+  display: none;
+}
+.wide-card:hover {
+  transform: scale(1.045);
+  outline: 2px solid #eef5ff;
+}
+.browse-heading {
+  padding: 52px 4vw 8px;
+}
+.browse-heading h1 {
+  margin: 8px 0;
+  text-transform: capitalize;
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+}
+.empty-list {
+  color: #b9c6d9;
+  margin: 0;
+  padding: 16px 0;
+}
 
 /* Compact brand tiles matching the reference layout. */
 .hub-row {
@@ -89,33 +199,78 @@
   background: linear-gradient(145deg, #30333c, #20222a);
   border: 1px solid #4f535d;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .22), inset 0 1px rgba(255,255,255,.04);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .hub-card::before,
-.hub-card::after { display: none; }
+.hub-card::after {
+  display: none;
+}
 .hub-card:hover,
-.hub-card.selected { transform: scale(1.06); border-color: #9aa0ae; box-shadow: 0 6px 16px rgba(0, 0, 0, .35); }
-.hub-logo.disney { font-size: 1.02rem; }
-.hub-logo.pixar { font-size: .86rem; }
-.hub-logo.wars { font-size: .76rem; }
-.hub-logo.marvel { font-size: .57rem; }
-.hub-logo.natgeo { font-size: .43rem; }
+.hub-card.selected {
+  transform: scale(1.06);
+  border-color: #9aa0ae;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.hub-logo.disney {
+  font-size: 1.02rem;
+}
+.hub-logo.pixar {
+  font-size: 0.86rem;
+}
+.hub-logo.wars {
+  font-size: 0.76rem;
+}
+.hub-logo.marvel {
+  font-size: 0.57rem;
+}
+.hub-logo.natgeo {
+  font-size: 0.43rem;
+}
 
 @media (max-width: 700px) {
-  .hub-row { flex-wrap: wrap; gap: 12px; padding: 20px 18px 28px; }
+  .hub-row {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 18px 28px;
+  }
   .hub-card,
   .hub-card.disney,
   .hub-card.pixar,
   .hub-card.marvel,
   .hub-card.wars,
-  .hub-card.natgeo { flex-basis: 28vw; height: 58px; }
-  .hub-card:last-child { flex-basis: 100%; max-width: 100%; }
+  .hub-card.natgeo {
+    flex-basis: 28vw;
+    height: 58px;
+  }
+  .hub-card:last-child {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-  .plus-nav .profile { margin-left: auto; width: 32px; height: 32px; }
-  .menu-toggle { display: grid; place-items: center; width: 34px; height: 34px; border: 0; background: transparent; color: white; font-size: 1.1rem; }
-  .wide-card { flex-basis: 39vw; }
-  .wide-card img { height: 58vw; }
+  .plus-nav .profile {
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+  }
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 1.1rem;
+  }
+  .wide-card {
+    flex-basis: 39vw;
+  }
+  .wide-card img {
+    height: 58vw;
+  }
 }

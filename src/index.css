@@ -1,1 +1,16 @@
-*{box-sizing:border-box}html,body,#root{margin:0;min-height:100%;background:#040714;color:#f9fbff;font-family:Arial,Helvetica,sans-serif}button{font:inherit;cursor:pointer}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #040714;
+  color: #f9fbff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}

@@ -15,7 +15,7 @@
   right: 0;
   bottom: 0;
   height: 145px;
-  background: linear-gradient(transparent 5%, rgba(2, 5, 13, .9) 58%, #02050d 100%);
+  background: linear-gradient(transparent 5%, rgba(2, 5, 13, 0.9) 58%, #02050d 100%);
 }
 
 .detail-card::before {
@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   height: 105px;
-  background: linear-gradient(#02050d 5%, rgba(2, 5, 13, .75), transparent);
+  background: linear-gradient(#02050d 5%, rgba(2, 5, 13, 0.75), transparent);
 }
 
 .detail-card > div {
@@ -35,12 +35,12 @@
 
 .sound-toggle {
   margin-left: 10px;
-  border: 1px solid rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 4px;
   padding: 13px 15px;
-  background: rgba(4, 10, 23, .65);
+  background: rgba(4, 10, 23, 0.65);
   color: #fff;
-  font-size: .72rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
 }

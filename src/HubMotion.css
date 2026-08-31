@@ -1,2 +1,91 @@
-.hub-card{isolation:isolate;overflow:hidden;background-size:160% 160%;animation:hub-ambient 9s ease-in-out infinite}.hub-card::before{content:'';position:absolute;inset:-60%;z-index:-1;background:radial-gradient(circle,rgba(255,255,255,.34),transparent 42%);opacity:.25;transform:translate(-24%,-18%);transition:transform .55s ease,opacity .35s}.hub-card::after{content:'✦';position:absolute;right:12px;top:8px;font-size:1.2rem;opacity:0;transform:scale(.4) rotate(-25deg);transition:.35s}.hub-card:hover::before,.hub-card.selected::before{opacity:.85;transform:translate(17%,14%)}.hub-card:hover::after,.hub-card.selected::after{opacity:.9;transform:scale(1) rotate(0)}.hub-card:hover strong,.hub-card.selected strong{letter-spacing:.05em;transform:translateY(-3px)}.hub-card strong{transition:.3s}.hub-card.marvel{background:linear-gradient(135deg,#b5162a,#32020d)}.hub-card.pixar{background:linear-gradient(135deg,#b42559,#3d0d2b)}.hub-card.wars{background:linear-gradient(135deg,#1f315b,#070a15)}.hub-card.disney{background:linear-gradient(135deg,#1e5bc1,#091c4c)}.hub-card.natgeo{background:linear-gradient(135deg,#bd7c10,#352000)}@keyframes hub-ambient{50%{background-position:100% 100%}}
-.plus-nav .disney-logo{font-family:Georgia,'Times New Roman',serif;font-size:1.7rem;letter-spacing:-2px;font-style:italic;color:#fff;text-transform:none}.plus-nav .disney-logo span{font-family:Arial,sans-serif;font-style:normal;font-size:1.35rem;margin-left:2px;color:#fff}.plus-hero{background-image:linear-gradient(90deg,#040714 10%,rgba(4,7,20,.67) 44%,rgba(4,7,20,.05)),url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2100&q=90')}.plus-hero h1{font-family:Georgia,'Times New Roman',serif;letter-spacing:.04em;font-style:italic}
+.hub-card {
+  isolation: isolate;
+  overflow: hidden;
+  background-size: 160% 160%;
+  animation: hub-ambient 9s ease-in-out infinite;
+}
+.hub-card::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.34), transparent 42%);
+  opacity: 0.25;
+  transform: translate(-24%, -18%);
+  transition:
+    transform 0.55s ease,
+    opacity 0.35s;
+}
+.hub-card::after {
+  content: '✦';
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: scale(0.4) rotate(-25deg);
+  transition: 0.35s;
+}
+.hub-card:hover::before,
+.hub-card.selected::before {
+  opacity: 0.85;
+  transform: translate(17%, 14%);
+}
+.hub-card:hover::after,
+.hub-card.selected::after {
+  opacity: 0.9;
+  transform: scale(1) rotate(0);
+}
+.hub-card:hover strong,
+.hub-card.selected strong {
+  letter-spacing: 0.05em;
+  transform: translateY(-3px);
+}
+.hub-card strong {
+  transition: 0.3s;
+}
+.hub-card.marvel {
+  background: linear-gradient(135deg, #b5162a, #32020d);
+}
+.hub-card.pixar {
+  background: linear-gradient(135deg, #b42559, #3d0d2b);
+}
+.hub-card.wars {
+  background: linear-gradient(135deg, #1f315b, #070a15);
+}
+.hub-card.disney {
+  background: linear-gradient(135deg, #1e5bc1, #091c4c);
+}
+.hub-card.natgeo {
+  background: linear-gradient(135deg, #bd7c10, #352000);
+}
+@keyframes hub-ambient {
+  50% {
+    background-position: 100% 100%;
+  }
+}
+.plus-nav .disney-logo {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.7rem;
+  letter-spacing: -2px;
+  font-style: italic;
+  color: #fff;
+  text-transform: none;
+}
+.plus-nav .disney-logo span {
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-size: 1.35rem;
+  margin-left: 2px;
+  color: #fff;
+}
+.plus-hero {
+  background-image:
+    linear-gradient(90deg, #040714 10%, rgba(4, 7, 20, 0.67) 44%, rgba(4, 7, 20, 0.05)),
+    url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2100&q=90');
+}
+.plus-hero h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}

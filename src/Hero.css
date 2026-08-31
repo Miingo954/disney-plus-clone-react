@@ -1,7 +1,13 @@
-.plus-hero { isolation: isolate; }
-.plus-hero:has(.hero-trailer) { background-image: none !important; }
+.plus-hero {
+  isolation: isolate;
+}
+.plus-hero:has(.hero-trailer) {
+  background-image: none !important;
+}
 
-.plus-hero::before { display: none; }
+.plus-hero::before {
+  display: none;
+}
 
 .hero-trailer,
 .hero-shade {
@@ -17,13 +23,19 @@
   height: max(100%, 56.25vw);
   border: 0;
   pointer-events: none;
-  opacity: .9;
+  opacity: 0.9;
   transform: translate(-50%, -50%);
 }
 
 .hero-shade {
   z-index: 1;
-  background: linear-gradient(90deg, rgba(4, 7, 20, .92) 0%, rgba(4, 7, 20, .78) 28%, rgba(4, 7, 20, .32) 47%, transparent 68%);
+  background: linear-gradient(
+    90deg,
+    rgba(4, 7, 20, 0.92) 0%,
+    rgba(4, 7, 20, 0.78) 28%,
+    rgba(4, 7, 20, 0.32) 47%,
+    transparent 68%
+  );
 }
 
 .hero-title-logo {
@@ -33,7 +45,7 @@
   margin: 15px 0 16px;
   object-fit: contain;
   object-position: left center;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, .5));
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
 }
 
 .hero-title-fallback {
@@ -43,10 +55,30 @@
   font-size: clamp(3rem, 7vw, 5.4rem);
   font-weight: 700;
 }
-.hero-title-loading { width: min(310px, 68vw); height: 78px; margin: 18px 0; border-radius: 5px; background: linear-gradient(100deg, rgba(255,255,255,.04), rgba(255,255,255,.13), rgba(255,255,255,.04)); background-size: 200% 100%; animation: hero-title-shimmer 1.1s linear infinite; }
-@keyframes hero-title-shimmer { to { background-position: -200% 0; } }
+.hero-title-loading {
+  width: min(310px, 68vw);
+  height: 78px;
+  margin: 18px 0;
+  border-radius: 5px;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.13),
+    rgba(255, 255, 255, 0.04)
+  );
+  background-size: 200% 100%;
+  animation: hero-title-shimmer 1.1s linear infinite;
+}
+@keyframes hero-title-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
 
-.plus-hero-copy { position: relative; z-index: 3; }
+.plus-hero-copy {
+  position: relative;
+  z-index: 3;
+}
 
 .plus-hero .watch {
   position: relative;
@@ -70,21 +102,46 @@
 .hero-carousel > button {
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(255, 255, 255, .38);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   border-radius: 50%;
-  background: rgba(5, 10, 23, .55);
+  background: rgba(5, 10, 23, 0.55);
   color: #fff;
   font-size: 1.5rem;
   line-height: 1;
 }
 
-.hero-carousel > div { display: flex; gap: 8px; }
-.hero-carousel > div button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.45); }
-.hero-carousel > div button.active { width: 26px; background: #fff; }
+.hero-carousel > div {
+  display: flex;
+  gap: 8px;
+}
+.hero-carousel > div button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.hero-carousel > div button.active {
+  width: 26px;
+  background: #fff;
+}
 
 @media (max-width: 700px) {
-  .hero-trailer { opacity: .45; }
-  .hero-title-logo { width: min(270px, 75vw); max-height: 110px; }
-  .hero-carousel { right: 18px; bottom: 22px; gap: 8px; }
-  .hero-carousel > button { width: 30px; height: 30px; }
+  .hero-trailer {
+    opacity: 0.45;
+  }
+  .hero-title-logo {
+    width: min(270px, 75vw);
+    max-height: 110px;
+  }
+  .hero-carousel {
+    right: 18px;
+    bottom: 22px;
+    gap: 8px;
+  }
+  .hero-carousel > button {
+    width: 30px;
+    height: 30px;
+  }
 }
