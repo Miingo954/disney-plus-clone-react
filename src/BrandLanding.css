@@ -150,7 +150,7 @@
   z-index: 0;
   opacity: 1;
   background: url('https://img.goodfon.com/original/2560x1600/7/d8/badfon-magic-kingdom-cinderella-142.jpg')
-    center 8% / cover;
+    left center / auto 100% no-repeat;
   transform: scaleX(-1);
   animation: none;
 }
