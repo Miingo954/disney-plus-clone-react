@@ -1,3 +1,4 @@
+import TrailerPlayer from './TrailerPlayer'
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import './Details.css'
@@ -115,7 +116,7 @@ function toTitle(item) {
 function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
-  const [soundOn, setSoundOn] = useState(true)
+  const [muted, setMuted] = useState(false)
   const trailerFrame = useRef(null)
   const title = titles[slide % titles.length]
   useEffect(() => {
@@ -144,18 +145,6 @@ function HeroMedia({ titles, openTitle, toggleList }) {
     media?.images?.logos?.find((image) => image.iso_639_1 === 'en') || media?.images?.logos?.[0]
   const move = (direction) =>
     setSlide((current) => (current + direction + titles.length) % titles.length)
-  const trailerUrl = trailer
-    ? `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=${soundOn ? 0 : 1}&controls=0&rel=0&cc_load_policy=0&iv_load_policy=3&disablekb=1&enablejsapi=1&playsinline=1`
-    : ''
-  const startSound = () => {
-    const player = trailerFrame.current?.contentWindow
-    if (player) {
-      player.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*')
-      player.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*')
-      player.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*')
-    }
-    setSoundOn(true)
-  }
   return (
     <section
       className="plus-hero"
@@ -169,12 +158,12 @@ function HeroMedia({ titles, openTitle, toggleList }) {
       }
     >
       {trailer && (
-        <iframe
+        <TrailerPlayer
           ref={trailerFrame}
+          videoId={trailer.key}
           className="hero-trailer"
           title={`${title.title} trailer`}
-          src={trailerUrl}
-          allow="autoplay; encrypted-media"
+          onMutedChange={setMuted}
         />
       )}
       <div className="hero-shade" />
@@ -198,8 +187,8 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           <ControlIcon name="play" /> WATCH NOW
         </button>
         {trailer && (
-          <button className="sound-toggle" onClick={startSound}>
-            <ControlIcon name={soundOn ? 'sound' : 'muted'} /> {soundOn ? 'RESTART SOUND' : 'TURN SOUND ON'}
+          <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
+            <ControlIcon name={muted ? 'muted' : 'sound'} /> {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
           </button>
         )}
         <button
@@ -738,8 +727,9 @@ function BrandLanding({ brand, feature, openTitle }) {
 }
 
 function TitleDetails({ title, close, toggleList, inList }) {
+  const trailerFrame = useRef(null)
   const [details, setDetails] = useState(title)
-  const [soundOn, setSoundOn] = useState(true)
+  const [muted, setMuted] = useState(false)
   const [season, setSeason] = useState(1)
   const [episodes, setEpisodes] = useState([])
   useEffect(() => {
@@ -786,11 +776,12 @@ function TitleDetails({ title, close, toggleList, inList }) {
       </header>
       <article className={`detail-card ${trailer ? 'has-trailer' : ''}`}>
         {trailer ? (
-          <iframe
+          <TrailerPlayer
+            ref={trailerFrame}
             className="detail-trailer"
+            videoId={trailer.key}
             title={`${details.title || details.name} trailer`}
-            src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&mute=${soundOn ? 0 : 1}&controls=0&rel=0&cc_load_policy=0&iv_load_policy=3&disablekb=1&playsinline=1`}
-            allow="autoplay; encrypted-media"
+            onMutedChange={setMuted}
           />
         ) : (
           <img src={details.image} alt={`${details.title || details.name} artwork`} />
@@ -821,8 +812,8 @@ function TitleDetails({ title, close, toggleList, inList }) {
               >
                 <ControlIcon name="play" /> WATCH TRAILER
               </a>
-              <button className="sound-toggle" onClick={() => setSoundOn(!soundOn)}>
-                <ControlIcon name={soundOn ? 'sound' : 'muted'} /> {soundOn ? 'SOUND ON' : 'TURN SOUND ON'}
+              <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
+                <ControlIcon name={muted ? 'muted' : 'sound'} /> {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
               </button>
             </>
           )}
