@@ -115,7 +115,7 @@ function toTitle(item) {
 function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
-  const [soundOn, setSoundOn] = useState(false)
+  const [soundOn, setSoundOn] = useState(true)
   const trailerFrame = useRef(null)
   const title = titles[slide % titles.length]
   useEffect(() => {
@@ -129,7 +129,6 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   useEffect(() => {
     if (!title) return
     setMedia(null)
-    setSoundOn(false)
     const kind = title.type === 'tv' ? 'tv' : 'movie'
     fetch(
       `/api/tmdb?path=${encodeURIComponent(`/${kind}/${title.tmdbID}?append_to_response=videos,images`)}`
@@ -740,7 +739,7 @@ function BrandLanding({ brand, feature, openTitle }) {
 
 function TitleDetails({ title, close, toggleList, inList }) {
   const [details, setDetails] = useState(title)
-  const [soundOn, setSoundOn] = useState(false)
+  const [soundOn, setSoundOn] = useState(true)
   const [season, setSeason] = useState(1)
   const [episodes, setEpisodes] = useState([])
   useEffect(() => {
