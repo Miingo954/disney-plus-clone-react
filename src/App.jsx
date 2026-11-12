@@ -10,6 +10,7 @@ import './BrandLanding.css'
 import './ProfilePicker.css'
 import './TitleExperience.css'
 import './Mobile.css'
+import ControlIcon from './ControlIcon'
 
 const hubs = [
   ['DISNEY', 'Stories for every generation', 'disney', '/brand/disney.svg'],
@@ -195,11 +196,11 @@ function HeroMedia({ titles, openTitle, toggleList }) {
             'Moana answers the call of the ocean and sets sail with Maui on an unforgettable journey across the seas of Oceania.'}
         </p>
         <button className="watch" onClick={() => openTitle(title)}>
-          ▶ WATCH NOW
+          <ControlIcon name="play" /> WATCH NOW
         </button>
         {trailer && (
           <button className="sound-toggle" onClick={startSound}>
-            {soundOn ? '🔊 RESTART SOUND' : '🔇 TURN SOUND ON'}
+            <ControlIcon name={soundOn ? 'sound' : 'muted'} /> {soundOn ? 'RESTART SOUND' : 'TURN SOUND ON'}
           </button>
         )}
         <button
@@ -207,7 +208,7 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           onClick={() => toggleList(title)}
           aria-label="Add featured title to My List"
         >
-          ＋
+          <ControlIcon name="plus" />
         </button>
       </div>
       {titles.length > 1 && (
@@ -728,7 +729,7 @@ function BrandLanding({ brand, feature, openTitle }) {
           <>
             <p className="hero-meta">{feature.year} · Featured collection</p>
             <button className="watch" onClick={() => openTitle(feature)}>
-              ▶ WATCH FEATURED
+              <ControlIcon name="play" /> WATCH FEATURED
             </button>
           </>
         )}
@@ -819,15 +820,15 @@ function TitleDetails({ title, close, toggleList, inList }) {
                 target="_blank"
                 rel="noreferrer"
               >
-                ▶ WATCH TRAILER
+                <ControlIcon name="play" /> WATCH TRAILER
               </a>
               <button className="sound-toggle" onClick={() => setSoundOn(!soundOn)}>
-                {soundOn ? '🔊 SOUND ON' : '🔇 TURN SOUND ON'}
+                <ControlIcon name={soundOn ? 'sound' : 'muted'} /> {soundOn ? 'SOUND ON' : 'TURN SOUND ON'}
               </button>
             </>
           )}
-          <button className="add" onClick={() => toggleList(title)}>
-            {inList ? '✓' : '＋'}
+          <button className="add" onClick={() => toggleList(title)} aria-label={inList ? 'Remove from My List' : 'Add to My List'}>
+            <ControlIcon name={inList ? 'check' : 'plus'} />
           </button>
         </div>
       </article>
