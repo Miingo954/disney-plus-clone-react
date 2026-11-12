@@ -649,26 +649,27 @@ function BrandLanding({ brand, feature, openTitle }) {
   const pixarLightRef = useRef(null)
   useEffect(() => {
     if (brand?.slug !== 'pixar' || !landingRef.current || !pixarLightRef.current) return
+    const artwork = landingRef.current.querySelector('.studio-intro')
     const positionLamp = () => {
-      const box = landingRef.current.getBoundingClientRect()
-      const scale = Math.max(box.width / 1920, box.height / 1080)
-      const renderedWidth = 1920 * scale
-      const renderedHeight = 1080 * scale
-      const mobile = window.matchMedia('(max-width: 700px)').matches
-      const cropX = mobile ? 0 : (renderedWidth - box.width) / 2
-      const cropY = (renderedHeight - box.height) / 2
-      pixarLightRef.current.style.left = `${650 * scale - cropX}px`
-      pixarLightRef.current.style.top = `${503 * scale - cropY}px`
+      const scale = artwork.getBoundingClientRect().width / 1920
+      // Coordinates of the bulb in the supplied 1920 × 1080 artwork.
+      pixarLightRef.current.style.left = `${625 * scale}px`
+      pixarLightRef.current.style.top = `${445 * scale}px`
+      pixarLightRef.current.style.width = `${36 * scale}px`
+      pixarLightRef.current.style.height = `${36 * scale}px`
     }
     positionLamp()
     const observer = new ResizeObserver(positionLamp)
-    observer.observe(landingRef.current)
+    observer.observe(artwork)
     return () => observer.disconnect()
   }, [brand?.slug])
   if (!brand) return null
   return (
     <section ref={landingRef} className={`brand-landing ${brand.slug}`}>
       <div className="studio-intro" aria-hidden="true">
+        {brand.slug === 'pixar' && (
+          <img className="pixar-background" src="/brand/pixar-background.jpg" alt="" width="1920" height="1080" />
+        )}
         <span />
         <i ref={pixarLightRef} />
         <b />
