@@ -9,6 +9,7 @@ import './Hero.css'
 import './BrandLanding.css'
 import './ProfilePicker.css'
 import './TitleExperience.css'
+import './Mobile.css'
 
 const hubs = [
   ['DISNEY', 'Stories for every generation', 'disney', '/brand/disney.svg'],
@@ -544,7 +545,9 @@ export default function App() {
         <a className="disney-logo" href="#/home" aria-label="Disney Plus home">
           <img src="/brand/disney-plus-logo.svg" alt="Disney+" />
         </a>
-        <nav className={menu ? 'open' : ''}>
+        <nav id="disney-navigation" className={menu ? 'open' : ''} onClick={(event) => {
+          if (event.target.closest('a')) setMenu(false)
+        }}>
           <a className={page === 'home' ? 'current' : ''} href="#/home">
             HOME
           </a>
@@ -580,8 +583,8 @@ export default function App() {
             </div>
           )}
         </div>
-        <button className="menu-toggle" onClick={() => setMenu(!menu)} aria-label="Open navigation">
-          ☰
+        <button className="menu-toggle" onClick={() => setMenu(!menu)} aria-label={menu ? 'Close navigation' : 'Open navigation'} aria-expanded={menu} aria-controls="disney-navigation">
+          {menu ? '×' : '☰'}
         </button>
       </header>
       {page === 'home' && (
