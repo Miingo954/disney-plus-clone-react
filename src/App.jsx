@@ -288,6 +288,8 @@ export default function App() {
     JSON.parse(localStorage.getItem('disney-plus-my-list') || '[]')
   )
   const [route, setRoute] = useState(() => window.location.hash.replace(/^#\/?/, '') || 'home')
+  const previousRoute = useRef(route)
+  const [routeLoading, setRouteLoading] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [signedOut, setSignedOut] = useState(false)
   useEffect(() => {
@@ -371,10 +373,22 @@ export default function App() {
       .catch(() => {})
   }, [])
   useEffect(() => {
-    const onRouteChange = () => setRoute(window.location.hash.replace(/^#\/?/, '') || 'home')
+    const onRouteChange = () => {
+      const nextRoute = window.location.hash.replace(/^#\/?/, '') || 'home'
+      if (nextRoute !== previousRoute.current) {
+        previousRoute.current = nextRoute
+        setRouteLoading(true)
+      }
+      setRoute(nextRoute)
+    }
     window.addEventListener('hashchange', onRouteChange)
     return () => window.removeEventListener('hashchange', onRouteChange)
   }, [])
+  useEffect(() => {
+    if (!routeLoading) return
+    const timer = window.setTimeout(() => setRouteLoading(false), 420)
+    return () => window.clearTimeout(timer)
+  }, [routeLoading])
   useEffect(() => localStorage.setItem('disney-plus-my-list', JSON.stringify(myList)), [myList])
   const titleRouteId = route.startsWith('title/') ? route.slice(6) : ''
   useEffect(() => {
@@ -513,6 +527,8 @@ export default function App() {
         </section>
       </main>
     )
+  if (routeLoading) return <DisneyRouteSkeleton />
+
   if (routeTitle && page === 'title')
     return (
       <TitleDetails
@@ -622,6 +638,16 @@ export default function App() {
         </>
       )}
       <footer>© 2026 Disney+ UI portfolio clone · Live catalog powered by TMDB</footer>
+    </main>
+  )
+}
+
+function DisneyRouteSkeleton() {
+  return (
+    <main className="disney-route-skeleton" aria-busy="true" aria-label="Loading page">
+      <header><span className="disney-route-skeleton__logo" /><span /><span /><span /></header>
+      <section className="disney-route-skeleton__hero"><div><span className="disney-route-skeleton__eyebrow" /><span className="disney-route-skeleton__title" /><span className="disney-route-skeleton__copy" /><span className="disney-route-skeleton__copy disney-route-skeleton__copy--short" /><span className="disney-route-skeleton__button" /></div></section>
+      <section className="disney-route-skeleton__row"><span className="disney-route-skeleton__heading" /><div>{Array.from({ length: 6 }, (_, index) => <span className="disney-route-skeleton__card" key={index} />)}</div></section>
     </main>
   )
 }
