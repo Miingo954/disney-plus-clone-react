@@ -67,6 +67,13 @@
     min-height: 0;
     display: block;
     padding: calc(56.25vw + 16px) 20px 72px;
+    background-position:
+      top center,
+      top center;
+    background-size:
+      100% 56.25vw,
+      100% 56.25vw;
+    background-repeat: no-repeat;
     touch-action: pan-y;
   }
   .plus-hero .hero-trailer {
