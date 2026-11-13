@@ -183,7 +183,7 @@ function HeroMedia({ titles, openTitle, toggleList }) {
         />
       )}
       <div className="hero-shade" />
-      <div className="plus-hero-copy">
+      <div className="plus-hero-copy" key={title?.id || slide}>
         <p className="eyebrow">DISNEY+ FEATURED</p>
         {logo ? (
           <img

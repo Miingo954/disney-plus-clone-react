@@ -95,6 +95,18 @@
 .plus-hero-copy {
   position: relative;
   z-index: 3;
+  animation: disney-title-arrival 0.7s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+
+@keyframes disney-title-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .plus-hero .watch {
