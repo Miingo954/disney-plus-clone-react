@@ -76,6 +76,9 @@
     transform: none;
     animation: disney-trailer-reveal 5.2s ease both;
   }
+  .plus-hero .hero-trailer.youtube-trailer-ready {
+    transform: none !important;
+  }
   .plus-hero .hero-shade {
     background: linear-gradient(180deg, transparent 0, transparent 34vw, #040714 57vw);
   }

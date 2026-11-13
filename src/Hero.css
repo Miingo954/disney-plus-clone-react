@@ -25,6 +25,15 @@
   animation: disney-trailer-reveal 5.2s ease both;
 }
 
+.hero-trailer.youtube-trailer-pending {
+  opacity: 0 !important;
+}
+
+.hero-trailer.youtube-trailer-ready {
+  opacity: var(--hero-trailer-opacity) !important;
+  transition: opacity 0.9s ease;
+}
+
 @keyframes disney-trailer-reveal {
   0%,
   82% {
