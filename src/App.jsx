@@ -168,13 +168,9 @@ function HeroMedia({ titles, openTitle, toggleList }) {
       onTouchCancel={() => {
         heroTouch.current = null
       }}
-      style={
-        trailer
-          ? undefined
-          : {
-              backgroundImage: `linear-gradient(90deg,#040714 10%,rgba(4,7,20,.67) 44%,rgba(4,7,20,.05)),url(${title?.image || art[0]})`,
-            }
-      }
+      style={{
+        backgroundImage: `linear-gradient(90deg,#040714 10%,rgba(4,7,20,.67) 44%,rgba(4,7,20,.05)),url(${title?.image || art[0]})`,
+      }}
     >
       {trailer && (
         <TrailerPlayer

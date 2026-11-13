@@ -1,10 +1,6 @@
 .plus-hero {
   isolation: isolate;
 }
-.plus-hero:has(.hero-trailer) {
-  background-image: none !important;
-}
-
 .plus-hero::before {
   display: none;
 }
@@ -16,6 +12,7 @@
 }
 
 .hero-trailer {
+  --hero-trailer-opacity: 0.9;
   z-index: 0;
   top: 50%;
   left: 50%;
@@ -23,8 +20,19 @@
   height: max(100%, 56.25vw);
   border: 0;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: var(--hero-trailer-opacity);
   transform: translate(-50%, -50%);
+  animation: disney-trailer-reveal 3.2s ease both;
+}
+
+@keyframes disney-trailer-reveal {
+  0%,
+  68% {
+    opacity: 0;
+  }
+  100% {
+    opacity: var(--hero-trailer-opacity);
+  }
 }
 
 .hero-shade {
@@ -129,7 +137,7 @@
 
 @media (max-width: 700px) {
   .hero-trailer {
-    opacity: 0.45;
+    --hero-trailer-opacity: 0.45;
   }
   .hero-title-logo {
     width: min(270px, 75vw);
