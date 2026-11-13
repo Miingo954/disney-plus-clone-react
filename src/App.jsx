@@ -118,6 +118,7 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   const [media, setMedia] = useState(null)
   const [muted, setMuted] = useState(false)
   const trailerFrame = useRef(null)
+  const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
   useEffect(() => {
     if (titles.length < 2) return
@@ -145,10 +146,28 @@ function HeroMedia({ titles, openTitle, toggleList }) {
     media?.images?.logos?.find((image) => image.iso_639_1 === 'en') || media?.images?.logos?.[0]
   const move = (direction) =>
     setSlide((current) => (current + direction + titles.length) % titles.length)
+  const startHeroSwipe = (event) => {
+    const touch = event.touches[0]
+    heroTouch.current = { x: touch.clientX, y: touch.clientY }
+  }
+  const finishHeroSwipe = (event) => {
+    if (!heroTouch.current) return
+    const touch = event.changedTouches[0]
+    const deltaX = touch.clientX - heroTouch.current.x
+    const deltaY = touch.clientY - heroTouch.current.y
+    heroTouch.current = null
+    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.2) return
+    move(deltaX < 0 ? 1 : -1)
+  }
   return (
     <section
       className="plus-hero"
       id="home"
+      onTouchStart={startHeroSwipe}
+      onTouchEnd={finishHeroSwipe}
+      onTouchCancel={() => {
+        heroTouch.current = null
+      }}
       style={
         trailer
           ? undefined
