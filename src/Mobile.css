@@ -76,6 +76,10 @@
     background-repeat: no-repeat;
     touch-action: pan-y;
   }
+  .plus-hero::before {
+    height: 56.25vw;
+    bottom: auto;
+  }
   .plus-hero .hero-trailer {
     inset: 0 auto auto 0;
     width: 100%;

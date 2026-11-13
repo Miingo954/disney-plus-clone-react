@@ -2,7 +2,18 @@
   isolation: isolate;
 }
 .plus-hero::before {
-  display: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(115deg, #040714 0%, #07152c 52%, #0b2041 100%);
+  opacity: 0;
+  visibility: hidden;
+}
+.plus-hero:has(.youtube-trailer-pending)::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .hero-trailer,
@@ -26,7 +37,7 @@
 }
 
 .hero-trailer.youtube-trailer-pending {
-  opacity: 0 !important;
+  opacity: var(--hero-trailer-opacity) !important;
 }
 
 .hero-trailer.youtube-trailer-ready {
