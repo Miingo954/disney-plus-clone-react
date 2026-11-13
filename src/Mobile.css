@@ -87,7 +87,9 @@
     transform: none !important;
   }
   .plus-hero .hero-shade {
-    background: linear-gradient(180deg, transparent 0, transparent 34vw, #040714 57vw);
+    background:
+      linear-gradient(180deg, #040714 0, #040714 30px, transparent 48px),
+      linear-gradient(180deg, transparent 0, transparent 34vw, #040714 57vw);
   }
   .plus-hero-copy {
     max-width: none;
