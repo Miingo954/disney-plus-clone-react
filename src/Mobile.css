@@ -81,7 +81,7 @@
     width: 100%;
     height: 56.25vw;
     transform: none;
-    animation: disney-trailer-reveal 5.2s ease both;
+    animation: none;
   }
   .plus-hero .hero-trailer.youtube-trailer-ready {
     transform: none !important;

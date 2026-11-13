@@ -22,7 +22,7 @@
   pointer-events: none;
   opacity: var(--hero-trailer-opacity);
   transform: translate(-50%, -50%);
-  animation: disney-trailer-reveal 5.2s ease both;
+  animation: none;
 }
 
 .hero-trailer.youtube-trailer-pending {
@@ -31,7 +31,7 @@
 
 .hero-trailer.youtube-trailer-ready {
   opacity: var(--hero-trailer-opacity) !important;
-  transition: opacity 0.9s ease;
+  transition: opacity 0.4s ease;
 }
 
 @keyframes disney-trailer-reveal {
