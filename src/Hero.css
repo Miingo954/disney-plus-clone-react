@@ -22,12 +22,12 @@
   pointer-events: none;
   opacity: var(--hero-trailer-opacity);
   transform: translate(-50%, -50%);
-  animation: disney-trailer-reveal 3.2s ease both;
+  animation: disney-trailer-reveal 5.2s ease both;
 }
 
 @keyframes disney-trailer-reveal {
   0%,
-  68% {
+  82% {
     opacity: 0;
   }
   100% {
