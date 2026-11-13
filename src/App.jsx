@@ -116,7 +116,7 @@ function toTitle(item) {
 function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
-  const [muted, setMuted] = useState(false)
+  const [muted, setMuted] = useState(true)
   const trailerFrame = useRef(null)
   const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
