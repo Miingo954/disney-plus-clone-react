@@ -1,6 +1,16 @@
 import { useEffect, useEffectEvent, useImperativeHandle, useRef } from 'react'
 
 let apiPromise
+function disableCaptions(player) {
+  try {
+    player.unloadModule?.('captions')
+    player.unloadModule?.('cc')
+    player.setOption?.('captions', 'track', {})
+  } catch {
+    // Some trailer embeds do not expose the captions module.
+  }
+}
+
 function loadYouTube() {
   if (window.YT?.Player) return Promise.resolve(window.YT)
   if (!apiPromise) {
@@ -70,6 +80,7 @@ export default function TrailerPlayer({
           onReady({ target }) {
             if (disposed) return
             player.current = target
+            disableCaptions(target)
             target.unMute()
             target.setVolume(100)
             target.playVideo()
@@ -83,7 +94,10 @@ export default function TrailerPlayer({
             reportMuted(true)
           },
           onStateChange({ target, data }) {
-            if (!disposed && data === 1) reportMuted(target.isMuted())
+            if (!disposed && data === 1) {
+              disableCaptions(target)
+              reportMuted(target.isMuted())
+            }
           },
         },
       })
