@@ -169,7 +169,8 @@ function HeroMedia({ titles, openTitle, toggleList }) {
         heroTouch.current = null
       }}
       style={{
-        backgroundImage: `linear-gradient(90deg,#040714 10%,rgba(4,7,20,.67) 44%,rgba(4,7,20,.05)),url(${title?.image || art[0]})`,
+        backgroundImage:
+          'linear-gradient(115deg, #040714 0%, #07152c 52%, #0b2041 100%)',
       }}
     >
       {trailer && (
