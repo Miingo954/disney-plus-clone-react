@@ -285,20 +285,86 @@ footer {
   }
 }
 /* Route loading fallback for Disney+, brand, and title pages. */
-.disney-route-skeleton { min-height: 100vh; overflow: hidden; color: transparent; background: #040b1d; }
-.disney-route-skeleton span { display: block; border-radius: 5px; background: linear-gradient(100deg, #111c34 20%, #24365d 38%, #111c34 55%); background-size: 220% 100%; animation: disney-skeleton-shimmer 1.1s linear infinite; }
-.disney-route-skeleton header { display: flex; align-items: center; gap: 1.6rem; height: 72px; padding: 0 4vw; background: #050d21; }
-.disney-route-skeleton header > span:not(.disney-route-skeleton__logo) { width: 68px; height: 12px; }
-.disney-route-skeleton__logo { width: 102px; height: 25px; }
-.disney-route-skeleton__hero { display: flex; align-items: center; min-height: 55vh; padding: 5rem 8vw; background: radial-gradient(circle at 76% 38%, #1f427f, transparent 35%), #06122b; }
-.disney-route-skeleton__hero > div { width: min(480px, 60vw); }
-.disney-route-skeleton__eyebrow { width: 105px; height: 12px; margin-bottom: 1.2rem; }
-.disney-route-skeleton__title { width: 78%; height: clamp(40px, 5vw, 68px); margin-bottom: 1.6rem; }
-.disney-route-skeleton__copy { width: 100%; height: 14px; margin-bottom: 0.65rem; }
-.disney-route-skeleton__copy--short { width: 68%; }
-.disney-route-skeleton__button { width: 155px; height: 44px; margin-top: 1.9rem; }
-.disney-route-skeleton__row { padding: 1.4rem 4vw 3rem; }
-.disney-route-skeleton__heading { width: 170px; height: 22px; margin-bottom: 1rem; }
-.disney-route-skeleton__row > div { display: flex; gap: 1rem; }
-.disney-route-skeleton__card { flex: 0 0 clamp(145px, 17vw, 250px); aspect-ratio: 1.75 / 1; }
-@keyframes disney-skeleton-shimmer { to { background-position-x: -220%; } }
+.disney-route-skeleton {
+  min-height: 100vh;
+  overflow: hidden;
+  color: transparent;
+  background: #040b1d;
+}
+.disney-route-skeleton span {
+  display: block;
+  border-radius: 5px;
+  background: linear-gradient(100deg, #111c34 20%, #24365d 38%, #111c34 55%);
+  background-size: 220% 100%;
+  animation: disney-skeleton-shimmer 1.1s linear infinite;
+}
+.disney-route-skeleton header {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  height: 72px;
+  padding: 0 4vw;
+  background: #050d21;
+}
+.disney-route-skeleton header > span:not(.disney-route-skeleton__logo) {
+  width: 68px;
+  height: 12px;
+}
+.disney-route-skeleton__logo {
+  width: 102px;
+  height: 25px;
+}
+.disney-route-skeleton__hero {
+  display: flex;
+  align-items: center;
+  min-height: 55vh;
+  padding: 5rem 8vw;
+  background: radial-gradient(circle at 76% 38%, #1f427f, transparent 35%), #06122b;
+}
+.disney-route-skeleton__hero > div {
+  width: min(480px, 60vw);
+}
+.disney-route-skeleton__eyebrow {
+  width: 105px;
+  height: 12px;
+  margin-bottom: 1.2rem;
+}
+.disney-route-skeleton__title {
+  width: 78%;
+  height: clamp(40px, 5vw, 68px);
+  margin-bottom: 1.6rem;
+}
+.disney-route-skeleton__copy {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 0.65rem;
+}
+.disney-route-skeleton__copy--short {
+  width: 68%;
+}
+.disney-route-skeleton__button {
+  width: 155px;
+  height: 44px;
+  margin-top: 1.9rem;
+}
+.disney-route-skeleton__row {
+  padding: 1.4rem 4vw 3rem;
+}
+.disney-route-skeleton__heading {
+  width: 170px;
+  height: 22px;
+  margin-bottom: 1rem;
+}
+.disney-route-skeleton__row > div {
+  display: flex;
+  gap: 1rem;
+}
+.disney-route-skeleton__card {
+  flex: 0 0 clamp(145px, 17vw, 250px);
+  aspect-ratio: 1.75 / 1;
+}
+@keyframes disney-skeleton-shimmer {
+  to {
+    background-position-x: -220%;
+  }
+}

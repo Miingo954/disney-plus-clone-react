@@ -188,7 +188,8 @@ function HeroMedia({ titles, openTitle, toggleList }) {
         </button>
         {trailer && (
           <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
-            <ControlIcon name={muted ? 'muted' : 'sound'} /> {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
+            <ControlIcon name={muted ? 'muted' : 'sound'} />{' '}
+            {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
           </button>
         )}
         <button
@@ -534,9 +535,13 @@ export default function App() {
         <a className="disney-logo" href="#/home" aria-label="Disney Plus home">
           <img src="/brand/disney-plus-logo.svg" alt="Disney+" />
         </a>
-        <nav id="disney-navigation" className={menu ? 'open' : ''} onClick={(event) => {
-          if (event.target.closest('a')) setMenu(false)
-        }}>
+        <nav
+          id="disney-navigation"
+          className={menu ? 'open' : ''}
+          onClick={(event) => {
+            if (event.target.closest('a')) setMenu(false)
+          }}
+        >
           <a className={page === 'home' ? 'current' : ''} href="#/home">
             HOME
           </a>
@@ -572,7 +577,13 @@ export default function App() {
             </div>
           )}
         </div>
-        <button className="menu-toggle" onClick={() => setMenu(!menu)} aria-label={menu ? 'Close navigation' : 'Open navigation'} aria-expanded={menu} aria-controls="disney-navigation">
+        <button
+          className="menu-toggle"
+          onClick={() => setMenu(!menu)}
+          aria-label={menu ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={menu}
+          aria-controls="disney-navigation"
+        >
           {menu ? '×' : '☰'}
         </button>
       </header>
@@ -637,9 +648,29 @@ export default function App() {
 function DisneyRouteSkeleton() {
   return (
     <main className="disney-route-skeleton" aria-busy="true" aria-label="Loading page">
-      <header><span className="disney-route-skeleton__logo" /><span /><span /><span /></header>
-      <section className="disney-route-skeleton__hero"><div><span className="disney-route-skeleton__eyebrow" /><span className="disney-route-skeleton__title" /><span className="disney-route-skeleton__copy" /><span className="disney-route-skeleton__copy disney-route-skeleton__copy--short" /><span className="disney-route-skeleton__button" /></div></section>
-      <section className="disney-route-skeleton__row"><span className="disney-route-skeleton__heading" /><div>{Array.from({ length: 6 }, (_, index) => <span className="disney-route-skeleton__card" key={index} />)}</div></section>
+      <header>
+        <span className="disney-route-skeleton__logo" />
+        <span />
+        <span />
+        <span />
+      </header>
+      <section className="disney-route-skeleton__hero">
+        <div>
+          <span className="disney-route-skeleton__eyebrow" />
+          <span className="disney-route-skeleton__title" />
+          <span className="disney-route-skeleton__copy" />
+          <span className="disney-route-skeleton__copy disney-route-skeleton__copy--short" />
+          <span className="disney-route-skeleton__button" />
+        </div>
+      </section>
+      <section className="disney-route-skeleton__row">
+        <span className="disney-route-skeleton__heading" />
+        <div>
+          {Array.from({ length: 6 }, (_, index) => (
+            <span className="disney-route-skeleton__card" key={index} />
+          ))}
+        </div>
+      </section>
     </main>
   )
 }
@@ -668,7 +699,13 @@ function BrandLanding({ brand, feature, openTitle }) {
     <section ref={landingRef} className={`brand-landing ${brand.slug}`}>
       <div className="studio-intro" aria-hidden="true">
         {brand.slug === 'pixar' && (
-          <img className="pixar-background" src="/brand/pixar-background.jpg" alt="" width="1920" height="1080" />
+          <img
+            className="pixar-background"
+            src="/brand/pixar-background.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+          />
         )}
         <span />
         <i ref={pixarLightRef} />
@@ -814,11 +851,16 @@ function TitleDetails({ title, close, toggleList, inList }) {
                 <ControlIcon name="play" /> WATCH TRAILER
               </a>
               <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
-                <ControlIcon name={muted ? 'muted' : 'sound'} /> {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
+                <ControlIcon name={muted ? 'muted' : 'sound'} />{' '}
+                {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
               </button>
             </>
           )}
-          <button className="add" onClick={() => toggleList(title)} aria-label={inList ? 'Remove from My List' : 'Add to My List'}>
+          <button
+            className="add"
+            onClick={() => toggleList(title)}
+            aria-label={inList ? 'Remove from My List' : 'Add to My List'}
+          >
             <ControlIcon name={inList ? 'check' : 'plus'} />
           </button>
         </div>

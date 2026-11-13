@@ -20,26 +20,37 @@ function loadYouTube() {
 }
 
 // Own the iframe inside a host so API cleanup is safe with React Strict Mode.
-export default function TrailerPlayer({ ref, videoId, title, className, onMutedChange, controls = false }) {
+export default function TrailerPlayer({
+  ref,
+  videoId,
+  title,
+  className,
+  onMutedChange,
+  controls = false,
+}) {
   const host = useRef(null)
   const player = useRef(null)
   const reportMuted = useEffectEvent((muted) => onMutedChange?.(muted))
 
-  useImperativeHandle(ref, () => ({
-    toggleSound() {
-      const current = player.current
-      if (!current?.getPlayerState) return
-      const wasMuted = current.isMuted()
-      if (wasMuted) {
-        current.unMute()
-        current.setVolume(100)
-        current.playVideo()
-      } else {
-        current.mute()
-      }
-      onMutedChange?.(!wasMuted)
-    },
-  }), [onMutedChange])
+  useImperativeHandle(
+    ref,
+    () => ({
+      toggleSound() {
+        const current = player.current
+        if (!current?.getPlayerState) return
+        const wasMuted = current.isMuted()
+        if (wasMuted) {
+          current.unMute()
+          current.setVolume(100)
+          current.playVideo()
+        } else {
+          current.mute()
+        }
+        onMutedChange?.(!wasMuted)
+      },
+    }),
+    [onMutedChange]
+  )
 
   useEffect(() => {
     let disposed = false
