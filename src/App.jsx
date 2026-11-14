@@ -117,10 +117,12 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
   const [muted, setMuted] = useState(true)
+  const [mobileTrailerPlaying, setMobileTrailerPlaying] = useState(false)
   const trailerFrame = useRef(null)
   const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
   const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
+  useEffect(() => setMobileTrailerPlaying(false), [slide])
   useEffect(() => {
     if (titles.length < 2) return
     const timer = window.setInterval(
@@ -181,7 +183,11 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           className="hero-trailer"
           title={`${title.title} trailer`}
           onMutedChange={setMuted}
+          onPlayingChange={setMobileTrailerPlaying}
         />
+      )}
+      {isMobileViewport && !mobileTrailerPlaying && (
+        <img className="mobile-hero-poster" src={title?.image || art[0]} alt="" />
       )}
       <div className="hero-shade" />
       <div className="plus-hero-copy" key={title?.id || slide}>
