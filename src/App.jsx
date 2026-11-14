@@ -117,9 +117,11 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
   const [muted, setMuted] = useState(true)
+  const [mobileTrailerOpen, setMobileTrailerOpen] = useState(false)
   const trailerFrame = useRef(null)
   const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
+  const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
   useEffect(() => {
     if (titles.length < 2) return
     const timer = window.setInterval(
@@ -171,9 +173,10 @@ function HeroMedia({ titles, openTitle, toggleList }) {
       style={{
         backgroundImage:
           'linear-gradient(115deg, #040714 0%, #07152c 52%, #0b2041 100%)',
+        '--mobile-hero-image': `url(${title?.image || art[0]})`,
       }}
     >
-      {trailer && (
+      {trailer && !isMobileViewport && (
         <TrailerPlayer
           ref={trailerFrame}
           videoId={trailer.key}
@@ -203,9 +206,16 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           <ControlIcon name="play" /> WATCH NOW
         </button>
         {trailer && (
-          <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
-            <ControlIcon name={muted ? 'muted' : 'sound'} />{' '}
-            {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
+          <button
+            className="sound-toggle"
+            onClick={() =>
+              isMobileViewport
+                ? setMobileTrailerOpen(true)
+                : trailerFrame.current?.toggleSound()
+            }
+          >
+            <ControlIcon name={isMobileViewport ? 'play' : muted ? 'muted' : 'sound'} />{' '}
+            {isMobileViewport ? 'PLAY TRAILER' : muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
           </button>
         )}
         <button
@@ -234,6 +244,25 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           <button onClick={() => move(1)} aria-label="Next trailer">
             ›
           </button>
+        </div>
+      )}
+      {mobileTrailerOpen && trailer && (
+        <div className="mobile-trailer-modal" onClick={() => setMobileTrailerOpen(false)}>
+          <div className="mobile-trailer-dialog" onClick={(event) => event.stopPropagation()}>
+            <button
+              className="mobile-trailer-close"
+              onClick={() => setMobileTrailerOpen(false)}
+              aria-label="Close trailer"
+            >
+              ×
+            </button>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&controls=1&playsinline=1&rel=0`}
+              title={`${title.title} trailer`}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       )}
     </section>

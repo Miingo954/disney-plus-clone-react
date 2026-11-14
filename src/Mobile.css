@@ -75,14 +75,42 @@
       100% 56.25vw;
     background-repeat: no-repeat;
     touch-action: pan-y;
+    background-image:
+      linear-gradient(180deg, rgba(4, 7, 20, 0.08), #040714 57vw),
+      var(--mobile-hero-image) !important;
   }
   .plus-hero .hero-trailer {
-    inset: 0 auto auto 0;
+    display: none;
+  }
+  .mobile-trailer-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.9);
+  }
+  .mobile-trailer-dialog {
+    position: relative;
     width: 100%;
-    height: 56.25vw;
-    transform: scale(1.12);
-    transform-origin: center center;
-    animation: none;
+    max-width: 720px;
+    aspect-ratio: 16 / 9;
+  }
+  .mobile-trailer-dialog iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .mobile-trailer-close {
+    position: absolute;
+    z-index: 1;
+    top: -44px;
+    right: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 2rem;
   }
   .plus-hero .hero-trailer.youtube-trailer-pending {
     opacity: 1 !important;
