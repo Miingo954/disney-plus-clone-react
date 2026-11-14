@@ -85,7 +85,7 @@
     animation: none;
   }
   .plus-hero .hero-trailer.youtube-trailer-pending {
-    opacity: 0 !important;
+    opacity: 0.001 !important;
   }
   .plus-hero .hero-trailer.youtube-trailer-ready {
     transform: scale(1.12) !important;
