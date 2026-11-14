@@ -84,6 +84,9 @@
     transform-origin: center center;
     animation: none;
   }
+  .plus-hero .hero-trailer.youtube-trailer-pending {
+    opacity: 0 !important;
+  }
   .plus-hero .hero-trailer.youtube-trailer-ready {
     transform: scale(1.12) !important;
   }
