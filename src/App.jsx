@@ -117,11 +117,12 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
   const [muted, setMuted] = useState(true)
-  const [mobileTrailerOpen, setMobileTrailerOpen] = useState(false)
+  const [mobileHeroPlaying, setMobileHeroPlaying] = useState(false)
   const trailerFrame = useRef(null)
   const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
   const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
+  useEffect(() => setMobileHeroPlaying(false), [slide])
   useEffect(() => {
     if (titles.length < 2) return
     const timer = window.setInterval(
@@ -185,6 +186,15 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           onMutedChange={setMuted}
         />
       )}
+      {trailer && isMobileViewport && mobileHeroPlaying && (
+        <iframe
+          className="mobile-hero-video"
+          src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&mute=0&controls=1&playsinline=1&rel=0`}
+          title={`${title.title} trailer`}
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+        />
+      )}
       <div className="hero-shade" />
       <div className="plus-hero-copy" key={title?.id || slide}>
         <p className="eyebrow">DISNEY+ FEATURED</p>
@@ -210,7 +220,7 @@ function HeroMedia({ titles, openTitle, toggleList }) {
             className="sound-toggle"
             onClick={() =>
               isMobileViewport
-                ? setMobileTrailerOpen(true)
+                ? setMobileHeroPlaying(true)
                 : trailerFrame.current?.toggleSound()
             }
           >
@@ -244,25 +254,6 @@ function HeroMedia({ titles, openTitle, toggleList }) {
           <button onClick={() => move(1)} aria-label="Next trailer">
             ›
           </button>
-        </div>
-      )}
-      {mobileTrailerOpen && trailer && (
-        <div className="mobile-trailer-modal" onClick={() => setMobileTrailerOpen(false)}>
-          <div className="mobile-trailer-dialog" onClick={(event) => event.stopPropagation()}>
-            <button
-              className="mobile-trailer-close"
-              onClick={() => setMobileTrailerOpen(false)}
-              aria-label="Close trailer"
-            >
-              ×
-            </button>
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&controls=1&playsinline=1&rel=0`}
-              title={`${title.title} trailer`}
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
         </div>
       )}
     </section>
