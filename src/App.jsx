@@ -117,12 +117,10 @@ function HeroMedia({ titles, openTitle, toggleList }) {
   const [slide, setSlide] = useState(0)
   const [media, setMedia] = useState(null)
   const [muted, setMuted] = useState(true)
-  const [mobileHeroPlaying, setMobileHeroPlaying] = useState(false)
   const trailerFrame = useRef(null)
   const heroTouch = useRef(null)
   const title = titles[slide % titles.length]
   const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
-  useEffect(() => setMobileHeroPlaying(false), [slide])
   useEffect(() => {
     if (titles.length < 2) return
     const timer = window.setInterval(
@@ -174,25 +172,15 @@ function HeroMedia({ titles, openTitle, toggleList }) {
       style={{
         backgroundImage:
           'linear-gradient(115deg, #040714 0%, #07152c 52%, #0b2041 100%)',
-        '--mobile-hero-image': `url(${title?.image || art[0]})`,
       }}
     >
-      {trailer && !isMobileViewport && (
+      {trailer && (
         <TrailerPlayer
           ref={trailerFrame}
           videoId={trailer.key}
           className="hero-trailer"
           title={`${title.title} trailer`}
           onMutedChange={setMuted}
-        />
-      )}
-      {trailer && isMobileViewport && mobileHeroPlaying && (
-        <iframe
-          className="mobile-hero-video"
-          src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&mute=0&controls=1&playsinline=1&rel=0`}
-          title={`${title.title} trailer`}
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
         />
       )}
       <div className="hero-shade" />
@@ -218,11 +206,7 @@ function HeroMedia({ titles, openTitle, toggleList }) {
         {trailer && (
           <button
             className="sound-toggle"
-            onClick={() =>
-              isMobileViewport
-                ? setMobileHeroPlaying(true)
-                : trailerFrame.current?.toggleSound()
-            }
+            onClick={() => trailerFrame.current?.toggleSound()}
           >
             <ControlIcon name={isMobileViewport ? 'play' : muted ? 'muted' : 'sound'} />{' '}
             {isMobileViewport ? 'PLAY TRAILER' : muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
