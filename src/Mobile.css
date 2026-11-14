@@ -80,6 +80,9 @@
     height: 56.25vw;
     bottom: auto;
   }
+  .plus-hero .trailer-play-fallback {
+    top: 28.125vw;
+  }
   .plus-hero .hero-trailer {
     inset: 0 auto auto 0;
     width: 100%;

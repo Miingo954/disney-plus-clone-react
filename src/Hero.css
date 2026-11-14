@@ -16,6 +16,22 @@
   visibility: visible;
 }
 
+.trailer-play-fallback {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  background: rgba(4, 7, 20, 0.88);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+}
+
 .hero-trailer,
 .hero-shade {
   position: absolute;
