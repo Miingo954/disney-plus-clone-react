@@ -408,7 +408,9 @@ export default function App() {
     return () => window.clearTimeout(timer)
   }, [routeLoading])
   useEffect(() => localStorage.setItem('disney-plus-my-list', JSON.stringify(myList)), [myList])
-  const titleRouteId = route.startsWith('title/') ? route.slice(6) : ''
+  const titleRouteId = route.startsWith('title/') ? route.slice(6).split('/')[0] : ''
+  const routedSeason = Number(route.match(/\/season\/(\d+)/)?.[1]) || 1
+  const routedEpisode = Number(route.match(/\/episode\/(\d+)/)?.[1]) || 0
   useEffect(() => {
     let cancelled = false
     if (!titleRouteId) return
@@ -550,10 +552,13 @@ export default function App() {
   if (routeTitle && page === 'title')
     return (
       <TitleDetails
+        key={`${routeTitle.id}-${routedSeason}`}
         title={routeTitle}
         close={closeTitle}
         toggleList={toggleList}
         inList={myList.some((item) => item.id === routeTitle.id)}
+        routedSeason={routedSeason}
+        routedEpisode={routedEpisode}
       />
     )
   if (isMobileViewport)
@@ -688,6 +693,7 @@ export default function App() {
 
 function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles, myList, openTitle }) {
   const [search, setSearch] = useState('')
+  const [studioPinned, setStudioPinned] = useState(false)
   const featureTrack = useRef(null)
   const featureIndex = useRef(0)
   const searchResults = search.trim()
@@ -707,6 +713,15 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
     return () => window.clearInterval(timer)
   }, [features.length])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    if (page !== 'brand') return
+    const updatePinnedLogo = () => setStudioPinned(window.scrollY > 210)
+    updatePinnedLogo()
+    window.addEventListener('scroll', updatePinnedLogo, { passive: true })
+    return () => window.removeEventListener('scroll', updatePinnedLogo)
+  }, [page, brand])
+
   const go = (path) => { window.location.hash = `/${path}` }
   const sectionName =
     page === 'brand' ? brandInfo[brand]?.name : page === 'watchlist' ? 'My Disney+' : page
@@ -721,7 +736,7 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
         <button className="mobile-disney-download" aria-label="Downloads">⇩</button>
       </header>
 
-      {page !== 'home' && page !== 'search' && <h1 className="mobile-disney-page-title">{sectionName}</h1>}
+      {page !== 'home' && page !== 'search' && page !== 'brand' && <h1 className="mobile-disney-page-title">{sectionName}</h1>}
       {page === 'search' && (
         <form className="mobile-disney-search" onSubmit={(event) => event.preventDefault()}>
           <span>⌕</span>
@@ -730,7 +745,15 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
         </form>
       )}
 
-      {!!features.length && page !== 'search' && (
+      {page === 'brand' && (
+        <MobileStudioLanding
+          studio={brandInfo[brand]}
+          feature={displayedRows[0]?.[1]?.[0]}
+          pinned={studioPinned}
+        />
+      )}
+
+      {!!features.length && page !== 'search' && page !== 'brand' && (
         <section ref={featureTrack} className="mobile-disney-features" aria-label="Featured titles">
           {features.map((title) => (
             <button key={title.id} onClick={() => openTitle(title)}>
@@ -759,6 +782,27 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
       {displayedRows.map(([title, items]) => (
         <MobileDisneyRow key={title} title={title} items={items} openTitle={openTitle} />
       ))}
+      {page === 'home' && (
+        <section className="mobile-disney-playlists">
+          <h2>Playlists</h2>
+          <div>
+            {rows
+              .filter(([, items]) => items?.length)
+              .slice(2, 6)
+              .map(([label, items]) => (
+                <button
+                  key={label}
+                  onClick={() => typeof items[0] !== 'string' && openTitle(items[0])}
+                >
+                  <img src={typeof items[0] === 'string' ? art[0] : items[0].image || items[0].poster} alt="" />
+                  <span />
+                  <strong>{label}</strong>
+                  <small>Playlist</small>
+                </button>
+              ))}
+          </div>
+        </section>
+      )}
 
       <nav className="mobile-disney-bottom" aria-label="Disney Plus navigation">
         <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span>⌂</span>Home</button>
@@ -768,6 +812,28 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
         <button className={page === 'watchlist' ? 'active' : ''} onClick={() => go('watchlist')}><span className="mobile-disney-avatar">J</span>Jamal</button>
       </nav>
     </main>
+  )
+}
+
+function MobileStudioLanding({ studio, feature, pinned }) {
+  if (!studio) return null
+  const landingImage = feature?.image || feature?.poster || art[0]
+  return (
+    <>
+      <section
+        className={`mobile-studio-landing mobile-studio-${studio.slug}${pinned ? ' is-scrolled' : ''}`}
+        style={{ backgroundImage: `url(${landingImage})` }}
+      >
+        <span className="mobile-studio-shade" />
+        <div className="mobile-studio-hero-logo">
+          <img src={studio.logo} alt={`${studio.name} logo`} />
+          <p>{studio.tagline}</p>
+        </div>
+      </section>
+      <div className={`mobile-studio-pinned-logo${pinned ? ' visible' : ''}`} aria-hidden={!pinned}>
+        <img src={studio.logo} alt="" />
+      </div>
+    </>
   )
 }
 
@@ -906,16 +972,16 @@ function BrandLanding({ brand, feature, openTitle }) {
   )
 }
 
-function TitleDetails({ title, close, toggleList, inList }) {
+function TitleDetails({ title, close, toggleList, inList, routedSeason, routedEpisode }) {
   const trailerFrame = useRef(null)
   const [details, setDetails] = useState(title)
   const [muted, setMuted] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [season, setSeason] = useState(1)
+  const [season, setSeason] = useState(routedSeason)
   const [episodes, setEpisodes] = useState([])
   const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
   useEffect(() => {
-    setSeason(1)
+    setSeason(routedSeason)
     setEpisodes([])
     const kind = title.type === 'tv' ? 'tv' : 'movie'
     fetch(
@@ -932,7 +998,7 @@ function TitleDetails({ title, close, toggleList, inList }) {
         })
       )
       .catch(() => {})
-  }, [title])
+  }, [title, routedSeason])
   useEffect(() => {
     if (title.type !== 'tv') return
     fetch(`/api/tmdb?path=${encodeURIComponent(`/tv/${title.tmdbID}/season/${season}`)}`)
@@ -1037,7 +1103,14 @@ function TitleDetails({ title, close, toggleList, inList }) {
             </div>
             <label>
               Season{' '}
-              <select value={season} onChange={(event) => setSeason(Number(event.target.value))}>
+              <select
+                value={season}
+                onChange={(event) => {
+                  const nextSeason = Number(event.target.value)
+                  setSeason(nextSeason)
+                  window.location.hash = `/title/${title.id}/season/${nextSeason}`
+                }}
+              >
                 {seasons.map((item) => (
                   <option key={item.id} value={item.season_number}>
                     Season {item.season_number}
@@ -1046,10 +1119,25 @@ function TitleDetails({ title, close, toggleList, inList }) {
               </select>
             </label>
           </div>
+          {routedEpisode > 0 && episodes.find((item) => item.episode_number === routedEpisode) && (
+            <div className="disney-now-viewing">
+              <span>NOW VIEWING</span>
+              <strong>
+                S{season}:E{routedEpisode} ·{' '}
+                {episodes.find((item) => item.episode_number === routedEpisode)?.name}
+              </strong>
+            </div>
+          )}
           {episodes.length ? (
             <div className="episode-list">
               {episodes.map((episode) => (
-                <article className="episode-card" key={episode.id}>
+                <button
+                  className={`episode-card${routedEpisode === episode.episode_number ? ' active' : ''}`}
+                  key={episode.id}
+                  onClick={() => {
+                    window.location.hash = `/title/${title.id}/season/${season}/episode/${episode.episode_number}`
+                  }}
+                >
                   <img
                     src={
                       episode.still_path
@@ -1064,7 +1152,7 @@ function TitleDetails({ title, close, toggleList, inList }) {
                     </span>
                     <p>{episode.overview || 'Continue the story in this episode.'}</p>
                   </div>
-                </article>
+                </button>
               ))}
             </div>
           ) : (

@@ -51,6 +51,80 @@
   font-size: 1.7rem;
   text-transform: capitalize;
 }
+.mobile-studio-landing {
+  position: relative;
+  height: min(76svh, 660px);
+  margin-top: -72px;
+  overflow: hidden;
+  background-color: #191a24;
+  background-position: center;
+  background-size: cover;
+}
+.mobile-studio-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(21,21,29,.18), transparent 28%, rgba(21,21,29,.2) 58%, #15151d 100%),
+    linear-gradient(90deg, rgba(5,8,18,.25), transparent 60%);
+}
+.mobile-studio-hero-logo {
+  position: absolute;
+  z-index: 1;
+  right: 24px;
+  bottom: 54px;
+  left: 24px;
+  display: grid;
+  justify-items: center;
+  transition: opacity .24s ease, transform .34s cubic-bezier(.2,.8,.3,1);
+}
+.mobile-studio-hero-logo img {
+  width: min(260px, 68vw);
+  max-height: 112px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 18px rgba(0,0,0,.72));
+}
+.mobile-studio-hero-logo p {
+  margin: 13px 0 0;
+  color: #e3e7f0;
+  text-align: center;
+  text-shadow: 0 2px 12px #000;
+}
+.mobile-studio-landing.is-scrolled .mobile-studio-hero-logo {
+  opacity: 0;
+  transform: translateY(-42px) scale(.72);
+}
+.mobile-studio-pinned-logo {
+  position: fixed;
+  z-index: 19;
+  top: max(67px, calc(env(safe-area-inset-top) + 58px));
+  right: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  height: 54px;
+  border-bottom: 1px solid #ffffff12;
+  background: rgba(21,21,29,.94);
+  opacity: 0;
+  transform: translateY(-14px);
+  transition: opacity .24s ease, transform .3s cubic-bezier(.2,.8,.3,1);
+  pointer-events: none;
+  backdrop-filter: blur(16px);
+}
+.mobile-studio-pinned-logo.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-studio-pinned-logo img {
+  width: min(132px, 34vw);
+  max-height: 38px;
+  object-fit: contain;
+}
+.mobile-studio-natgeo .mobile-studio-hero-logo img {
+  width: min(300px, 76vw);
+}
+.mobile-studio-wars .mobile-studio-hero-logo img {
+  width: min(220px, 58vw);
+}
 .mobile-disney-features {
   display: grid;
   grid-auto-flow: column;
@@ -157,6 +231,60 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.mobile-disney-playlists {
+  padding: 4px 0 26px 20px;
+}
+.mobile-disney-playlists h2 {
+  margin: 0 0 12px;
+  font-size: 1.28rem;
+}
+.mobile-disney-playlists > div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 72vw;
+  gap: 12px;
+  overflow-x: auto;
+  padding-right: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.mobile-disney-playlists button {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #484953;
+  border-radius: 12px;
+  background: #22232c;
+  color: #fff;
+  scroll-snap-align: start;
+}
+.mobile-disney-playlists img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mobile-disney-playlists button > span {
+  position: absolute;
+  inset: 36% 0 0;
+  background: linear-gradient(transparent, #12131d 92%);
+}
+.mobile-disney-playlists strong,
+.mobile-disney-playlists small {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  left: 18px;
+  text-align: left;
+}
+.mobile-disney-playlists strong {
+  bottom: 40px;
+  font-size: 1.35rem;
+}
+.mobile-disney-playlists small {
+  bottom: 20px;
+  color: #bfc3cf;
 }
 .mobile-disney-bottom {
   position: fixed;

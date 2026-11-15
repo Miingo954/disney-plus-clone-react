@@ -90,6 +90,20 @@
   padding: 12px;
   border-radius: 8px;
   background: #091326;
+  width: 100%;
+  border: 1px solid transparent;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.episode-card:hover {
+  border-color: #6d88b5;
+  transform: translateY(-1px);
+}
+.episode-card.active {
+  border-color: #69a7ff;
+  background: linear-gradient(90deg, #10274c, #091326 72%);
 }
 .episode-card img {
   width: 230px;
@@ -111,6 +125,22 @@
 .episode-loading {
   color: #b9c8df;
 }
+.disney-now-viewing {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border-left: 4px solid #69a7ff;
+  border-radius: 5px;
+  background: #0c1930;
+}
+.disney-now-viewing span {
+  color: #69a7ff;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
 @media (max-width: 700px) {
   .episode-section {
     padding: 38px 24px 60px;
@@ -126,5 +156,10 @@
   }
   .episode-card img {
     width: 100%;
+  }
+  .disney-now-viewing {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
   }
 }
