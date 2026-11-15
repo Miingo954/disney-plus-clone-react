@@ -309,6 +309,7 @@ export default function App() {
   const [routeLoading, setRouteLoading] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [signedOut, setSignedOut] = useState(false)
+  const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
   useEffect(() => {
     const paths = [
       '/discover/movie?with_companies=2&sort_by=popularity.desc',
@@ -555,6 +556,20 @@ export default function App() {
         inList={myList.some((item) => item.id === routeTitle.id)}
       />
     )
+  if (isMobileViewport)
+    return (
+      <MobileDisneyHome
+        key={route}
+        page={page}
+        brand={brand}
+        brandInfo={brandInfo}
+        heroTitles={heroTitles}
+        rows={page === 'watchlist' ? [['My List', myList]] : visibleRows}
+        allTitles={allTitles}
+        myList={myList}
+        openTitle={openTitle}
+      />
+    )
   return (
     <main className="plus-app">
       <header className="plus-nav">
@@ -668,6 +683,107 @@ export default function App() {
       )}
       <footer>© 2026 Disney+ UI portfolio clone · Live catalog powered by TMDB</footer>
     </main>
+  )
+}
+
+function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles, myList, openTitle }) {
+  const [search, setSearch] = useState('')
+  const featureTrack = useRef(null)
+  const featureIndex = useRef(0)
+  const searchResults = search.trim()
+    ? allTitles.filter((title) => title.title.toLowerCase().includes(search.trim().toLowerCase()))
+    : allTitles
+  const displayedRows = page === 'search' ? [['Search results', searchResults]] : rows
+  const features = page === 'home' ? heroTitles.slice(0, 6) : displayedRows[0]?.[1]?.slice(0, 5) || []
+
+  useEffect(() => {
+    if (features.length < 2) return
+    const timer = window.setInterval(() => {
+      const track = featureTrack.current
+      if (!track) return
+      featureIndex.current = (featureIndex.current + 1) % features.length
+      track.scrollTo({ left: featureIndex.current * (track.clientWidth * 0.82), behavior: 'smooth' })
+    }, 7000)
+    return () => window.clearInterval(timer)
+  }, [features.length])
+
+  const go = (path) => { window.location.hash = `/${path}` }
+  const sectionName =
+    page === 'brand' ? brandInfo[brand]?.name : page === 'watchlist' ? 'My Disney+' : page
+
+  return (
+    <main className="mobile-disney-page">
+      <header className="mobile-disney-header">
+        {page !== 'home' ? (
+          <button onClick={() => go('home')} aria-label="Back home">‹</button>
+        ) : <span />}
+        <img src="/brand/disney-plus-logo.svg" alt="Disney+" />
+        <button className="mobile-disney-download" aria-label="Downloads">⇩</button>
+      </header>
+
+      {page !== 'home' && page !== 'search' && <h1 className="mobile-disney-page-title">{sectionName}</h1>}
+      {page === 'search' && (
+        <form className="mobile-disney-search" onSubmit={(event) => event.preventDefault()}>
+          <span>⌕</span>
+          <input autoFocus value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search Disney+" aria-label="Search Disney Plus" />
+          {search && <button type="button" onClick={() => setSearch('')}>×</button>}
+        </form>
+      )}
+
+      {!!features.length && page !== 'search' && (
+        <section ref={featureTrack} className="mobile-disney-features" aria-label="Featured titles">
+          {features.map((title) => (
+            <button key={title.id} onClick={() => openTitle(title)}>
+              <img src={title.poster || title.image} alt={`${title.title} poster`} />
+              <span />
+              <strong>{title.title}</strong>
+              <small>{title.year} · {title.type === 'tv' ? 'Series' : 'Movie'}</small>
+            </button>
+          ))}
+        </section>
+      )}
+
+      {page === 'home' && (
+        <section className="mobile-disney-brands" aria-label="Disney brands">
+          {hubs.map(([name, , style, logo]) => (
+            <button key={name} onClick={() => go(`brand/${style}`)}>
+              <img src={logo} alt={name} />
+            </button>
+          ))}
+        </section>
+      )}
+
+      {page === 'watchlist' && !myList.length && (
+        <p className="mobile-disney-empty">Use the ＋ button on a title to build your list.</p>
+      )}
+      {displayedRows.map(([title, items]) => (
+        <MobileDisneyRow key={title} title={title} items={items} openTitle={openTitle} />
+      ))}
+
+      <nav className="mobile-disney-bottom" aria-label="Disney Plus navigation">
+        <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span>⌂</span>Home</button>
+        <button className={page === 'originals' ? 'active' : ''} onClick={() => go('originals')}><span>◆</span>Live</button>
+        <button className={page === 'movies' ? 'active' : ''} onClick={() => go('movies')}><span>▣</span>Verts</button>
+        <button className={page === 'search' ? 'active' : ''} onClick={() => go('search')}><span>⌕</span>Search</button>
+        <button className={page === 'watchlist' ? 'active' : ''} onClick={() => go('watchlist')}><span className="mobile-disney-avatar">J</span>Jamal</button>
+      </nav>
+    </main>
+  )
+}
+
+function MobileDisneyRow({ title, items, openTitle }) {
+  if (!items?.length) return null
+  return (
+    <section className="mobile-disney-row">
+      <h2>{title}</h2>
+      <div>
+        {items.map((item) => (
+          <button key={item.id || item} onClick={() => typeof item !== 'string' && openTitle(item)}>
+            <img src={typeof item === 'string' ? art[0] : item.poster || item.image} alt={typeof item === 'string' ? item : `${item.title} poster`} />
+          </button>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -794,8 +910,10 @@ function TitleDetails({ title, close, toggleList, inList }) {
   const trailerFrame = useRef(null)
   const [details, setDetails] = useState(title)
   const [muted, setMuted] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const [season, setSeason] = useState(1)
   const [episodes, setEpisodes] = useState([])
+  const isMobileViewport = window.matchMedia('(max-width: 700px)').matches
   useEffect(() => {
     setSeason(1)
     setEpisodes([])
@@ -846,9 +964,20 @@ function TitleDetails({ title, close, toggleList, inList }) {
             videoId={trailer.key}
             title={`${details.title || details.name} trailer`}
             onMutedChange={setMuted}
+            onPlayingChange={setPlaying}
+            autoPlay={isMobileViewport}
           />
         ) : (
           <img src={details.image} alt={`${details.title || details.name} artwork`} />
+        )}
+        {trailer && isMobileViewport && (
+          <button
+            className="mobile-detail-sound"
+            onClick={() => trailerFrame.current?.toggleSound()}
+            aria-label={muted ? 'Turn trailer sound on' : 'Mute trailer'}
+          >
+            <ControlIcon name={muted ? 'muted' : 'sound'} />
+          </button>
         )}
         <div>
           <p className="eyebrow">DISNEY+ {title.type === 'tv' ? 'SERIES' : 'MOVIE'}</p>
@@ -868,18 +997,26 @@ function TitleDetails({ title, close, toggleList, inList }) {
           <p>{details.overview || title.overview || 'Select this title to discover more.'}</p>
           {trailer && (
             <>
-              <a
-                className="watch"
-                href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ControlIcon name="play" /> WATCH TRAILER
-              </a>
-              <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
-                <ControlIcon name={muted ? 'muted' : 'sound'} />{' '}
-                {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
-              </button>
+              {isMobileViewport ? (
+                <button className="watch" onClick={() => trailerFrame.current?.togglePlayback()}>
+                  <ControlIcon name={playing ? 'pause' : 'play'} /> {playing ? 'PAUSE' : 'PLAY TRAILER'}
+                </button>
+              ) : (
+                <>
+                  <a
+                    className="watch"
+                    href={`https://www.youtube.com/watch?v=${trailer.key}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <ControlIcon name="play" /> WATCH TRAILER
+                  </a>
+                  <button className="sound-toggle" onClick={() => trailerFrame.current?.toggleSound()}>
+                    <ControlIcon name={muted ? 'muted' : 'sound'} />{' '}
+                    {muted ? 'TURN SOUND ON' : 'MUTE TRAILER'}
+                  </button>
+                </>
+              )}
             </>
           )}
           <button

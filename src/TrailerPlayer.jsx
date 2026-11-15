@@ -38,10 +38,11 @@ export default function TrailerPlayer({
   onMutedChange,
   onPlayingChange,
   controls = false,
+  autoPlay = false,
 }) {
   const host = useRef(null)
   const player = useRef(null)
-  const pendingPlayRequest = useRef(false)
+  const pendingPlayRequest = useRef(null)
   const reportMuted = useEffectEvent((muted) => onMutedChange?.(muted))
   const reportPlaying = useEffectEvent((playing) => onPlayingChange?.(playing))
 
@@ -51,7 +52,7 @@ export default function TrailerPlayer({
       toggleSound() {
         const current = player.current
         if (!current?.getPlayerState) {
-          pendingPlayRequest.current = true
+          pendingPlayRequest.current = 'sound'
           return
         }
         const wasMuted = current.isMuted()
@@ -63,6 +64,19 @@ export default function TrailerPlayer({
           current.mute()
         }
         onMutedChange?.(!wasMuted)
+      },
+      togglePlayback() {
+        const current = player.current
+        if (!current?.getPlayerState) {
+          pendingPlayRequest.current = 'muted'
+          return
+        }
+        if (current.getPlayerState() === 1) current.pauseVideo()
+        else {
+          current.mute()
+          current.playVideo()
+          reportMuted(true)
+        }
       },
     }),
     [onMutedChange]
@@ -82,7 +96,7 @@ export default function TrailerPlayer({
     frame.loading = 'eager'
     frame.allow = 'autoplay; encrypted-media; picture-in-picture'
     frame.allowFullscreen = true
-    frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${isMobile ? 0 : 1}&mute=1&controls=${controls ? 1 : 0}&rel=0&cc_load_policy=0&iv_load_policy=3&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`
+    frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${autoPlay || !isMobile ? 1 : 0}&mute=1&controls=${controls ? 1 : 0}&rel=0&cc_load_policy=0&iv_load_policy=3&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`
     container.appendChild(frame)
     loadYouTube().then((YT) => {
       if (disposed) return
@@ -93,14 +107,17 @@ export default function TrailerPlayer({
             player.current = target
             disableCaptions(target)
             if (pendingPlayRequest.current) {
-              pendingPlayRequest.current = false
-              target.unMute()
-              target.setVolume(100)
+              const requestedPlayback = pendingPlayRequest.current
+              pendingPlayRequest.current = null
+              if (requestedPlayback === 'sound') {
+                target.unMute()
+                target.setVolume(100)
+              } else target.mute()
               target.playVideo()
-              reportMuted(false)
+              reportMuted(requestedPlayback !== 'sound')
             } else {
               target.mute()
-              if (!isMobile) target.playVideo()
+              if (autoPlay || !isMobile) target.playVideo()
               reportMuted(true)
             }
           },
@@ -121,7 +138,7 @@ export default function TrailerPlayer({
                   frame.classList.add('youtube-trailer-ready')
                 }, 150)
               }
-            } else if (!disposed && data === 0) reportPlaying(false)
+            } else if (!disposed && (data === 0 || data === 2)) reportPlaying(false)
           },
         },
       })
@@ -134,7 +151,7 @@ export default function TrailerPlayer({
       instance?.destroy()
       container.replaceChildren()
     }
-  }, [videoId, title, className, controls])
+  }, [videoId, title, className, controls, autoPlay])
 
   return <span ref={host} style={{ display: 'contents' }} />
 }

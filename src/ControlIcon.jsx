@@ -27,6 +27,12 @@ export default function ControlIcon({ name, ...props }) {
         <path d="M7 14V3H3v11h4Zm0 0 5 8c2 0 3-1 2-4l-1-4h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-2H7" />
       </>
     ),
+    pause: (
+      <>
+        <path d="M8 5v14" />
+        <path d="M16 5v14" />
+      </>
+    ),
   }
   return (
     <svg

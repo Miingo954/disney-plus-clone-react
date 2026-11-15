@@ -1,4 +1,238 @@
 /* Focused phone layouts, leaving the desktop and embedded desktop routes intact. */
+.mobile-disney-page {
+  min-height: 100svh;
+  overflow-x: hidden;
+  padding-bottom: 98px;
+  background: #15151d;
+  color: #f9f9f9;
+  animation: mobile-disney-page-in .35s cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes mobile-disney-page-in {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.mobile-disney-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  min-height: 72px;
+  padding: max(6px, env(safe-area-inset-top)) 16px 6px;
+  background: linear-gradient(#15151d 74%, transparent);
+}
+.mobile-disney-header img {
+  justify-self: center;
+  width: 112px;
+  height: 48px;
+  object-fit: contain;
+}
+.mobile-disney-header button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #27272f;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+}
+.mobile-disney-header .mobile-disney-download {
+  justify-self: end;
+  background: transparent;
+  font-size: 1.65rem;
+}
+.mobile-disney-page-title {
+  margin: 8px 20px 18px;
+  font-size: 1.7rem;
+  text-transform: capitalize;
+}
+.mobile-disney-features {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78vw;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 20px 24px;
+  scroll-padding-inline: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.mobile-disney-features > button {
+  position: relative;
+  height: min(124vw, 580px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #444550;
+  border-radius: 14px;
+  background: #20202a;
+  color: #fff;
+  text-align: left;
+  scroll-snap-align: start;
+  box-shadow: 0 12px 30px rgba(0,0,0,.28);
+}
+.mobile-disney-features img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mobile-disney-features button > span {
+  position: absolute;
+  inset: 48% 0 0;
+  background: linear-gradient(transparent, rgba(8,8,14,.25) 24%, #15151d 100%);
+}
+.mobile-disney-features strong,
+.mobile-disney-features small {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  left: 18px;
+}
+.mobile-disney-features strong {
+  bottom: 48px;
+  font-size: clamp(1.6rem, 7vw, 2.5rem);
+  line-height: 1.05;
+}
+.mobile-disney-features small {
+  bottom: 24px;
+  color: #d5d5d8;
+}
+.mobile-disney-brands {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 108px;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 20px 26px;
+  scrollbar-width: none;
+}
+.mobile-disney-brands button {
+  display: grid;
+  place-items: center;
+  height: 66px;
+  padding: 9px;
+  border: 1px solid #555762;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #30313b, #20212b);
+  box-shadow: inset 0 0 18px #ffffff08;
+}
+.mobile-disney-brands img {
+  width: 88%;
+  max-height: 38px;
+  object-fit: contain;
+}
+.mobile-disney-row {
+  padding: 4px 0 22px 20px;
+}
+.mobile-disney-row h2 {
+  margin: 0 0 12px;
+  padding-right: 20px;
+  font-size: 1.28rem;
+}
+.mobile-disney-row > div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 31vw;
+  gap: 10px;
+  overflow-x: auto;
+  padding-right: 20px;
+  scroll-padding-inline: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.mobile-disney-row button {
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 7px;
+  background: #272731;
+  scroll-snap-align: start;
+}
+.mobile-disney-row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mobile-disney-bottom {
+  position: fixed;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  min-height: 74px;
+  padding: 8px 4px max(8px, env(safe-area-inset-bottom));
+  border-top: 1px solid #ffffff12;
+  background: rgba(24,24,30,.96);
+  backdrop-filter: blur(18px);
+}
+.mobile-disney-bottom button {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #96969e;
+  font-size: .65rem;
+}
+.mobile-disney-bottom button > span:first-child {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.mobile-disney-bottom button.active { color: #fff; }
+.mobile-disney-avatar {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #e9eef9;
+  color: #15151d;
+  font-size: .78rem !important;
+  font-weight: 900;
+}
+.mobile-disney-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  margin: 12px 20px 22px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #2c2c35;
+}
+.mobile-disney-search span { font-size: 1.5rem; }
+.mobile-disney-search input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+.mobile-disney-search button {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+}
+.mobile-disney-empty {
+  display: grid;
+  place-items: center;
+  min-height: 36vh;
+  padding: 28px;
+  color: #aaa;
+  text-align: center;
+}
 @media (max-width: 700px) {
   .plus-app {
     min-width: 0;
@@ -247,6 +481,18 @@
   .detail-nav {
     height: 64px;
     padding: 8px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .detail-nav .disney-logo {
+    grid-column: 2;
+    grid-row: 1;
+    width: 92px;
+  }
+  .detail-nav .back-button {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
   }
   .detail-card {
     min-height: 0;
@@ -258,6 +504,25 @@
     object-fit: cover;
     object-position: center top;
     opacity: 1;
+  }
+  .detail-trailer {
+    pointer-events: none;
+  }
+  .mobile-detail-sound {
+    position: absolute;
+    z-index: 5;
+    top: calc(56.25vw - 54px);
+    right: 16px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 50%;
+    background: rgba(7,12,25,.7);
+    color: #fff;
+    backdrop-filter: blur(5px);
   }
   .detail-card > div {
     max-width: none;
