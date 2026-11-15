@@ -805,9 +805,6 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
           {features.map((title) => (
             <button key={title.id} onClick={() => openTitle(title)}>
               <img src={title.poster || title.image} alt={`${title.title} poster`} />
-              <span />
-              <strong>{title.title}</strong>
-              <small>{title.year} · {title.type === 'tv' ? 'Series' : 'Movie'}</small>
             </button>
           ))}
         </section>
