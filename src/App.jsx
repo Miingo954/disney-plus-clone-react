@@ -323,71 +323,78 @@ export default function App() {
     ]
     Promise.all(
       paths.map((path) =>
-        fetch(`/api/tmdb?path=${encodeURIComponent(path)}`).then((response) => response.json())
+        Promise.all(
+          [1, 2].map((page) =>
+            fetch(`/api/tmdb?path=${encodeURIComponent(`${path}&page=${page}`)}`).then((response) =>
+              response.json()
+            )
+          )
+        )
       )
     )
-      .then(([trending, movies, series, marvel, pixar, starwars, natgeo, disney]) =>
+      .then((responses) => {
+        const [trending, movies, series, marvel, pixar, starwars, natgeo, disney] = responses.map(
+          (pages) => pages.flatMap((page) => page.results || [])
+        )
+        const usedTitles = new Set()
+        const takeUnique = (items, filter = () => true, count = 14) =>
+          items
+            .filter(
+              (item) =>
+                !excludedTitles.has(item.title || item.name) &&
+                filter(item) &&
+                !usedTitles.has(`${item.title ? 'movie' : 'tv'}-${item.id}`)
+            )
+            .slice(0, count)
+            .map((item) => {
+              usedTitles.add(`${item.title ? 'movie' : 'tv'}-${item.id}`)
+              return toTitle(item)
+            })
+
+        const marvelTitles = takeUnique(marvel)
+        const pixarTitles = takeUnique(pixar)
+        const starWarsTitles = takeUnique(starwars, isStarWarsTitle)
+        const natGeoTitles = takeUnique(natgeo)
+        const seriesTitles = takeUnique(series)
+        const disneyTitles = takeUnique(disney)
+        const newTitles = takeUnique(movies)
+        const recommendedTitles = takeUnique(trending)
+
         setLiveRows([
           [
             'Recommended for you',
-            trending.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            recommendedTitles,
           ],
           [
             'New to Disney+',
-            movies.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            newTitles,
           ],
           [
             'Marvel Studios',
-            marvel.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            marvelTitles,
           ],
           [
             'Pixar favorites',
-            pixar.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            pixarTitles,
           ],
           [
             'Star Wars saga',
-            starwars.results
-              .filter(
-                (item) => !excludedTitles.has(item.title || item.name) && isStarWarsTitle(item)
-              )
-              .slice(0, 8)
-              .map(toTitle),
+            starWarsTitles,
           ],
           [
             'Disney stories',
-            disney.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            disneyTitles,
           ],
           [
             'National Geographic',
-            natgeo.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            natGeoTitles,
           ],
           [
             'Binge-worthy series',
-            series.results
-              .filter((item) => !excludedTitles.has(item.title || item.name))
-              .slice(0, 8)
-              .map(toTitle),
+            seriesTitles,
           ],
         ])
-      )
+      })
       .catch(() => {})
   }, [])
   useEffect(() => {
@@ -694,6 +701,7 @@ export default function App() {
 function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles, myList, openTitle }) {
   const [search, setSearch] = useState('')
   const [studioPinned, setStudioPinned] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const featureTrack = useRef(null)
   const featureIndex = useRef(0)
   const searchResults = search.trim()
@@ -701,6 +709,24 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
     : allTitles
   const displayedRows = page === 'search' ? [['Search results', searchResults]] : rows
   const features = page === 'home' ? heroTitles.slice(0, 6) : displayedRows[0]?.[1]?.slice(0, 5) || []
+  const playlistEntries =
+    page === 'home'
+      ? rows
+          .filter(([, items]) => items?.length)
+          .slice(2, 6)
+          .map(([label, items]) => [label, items[0]])
+      : []
+  const reservedHomeIds = new Set([
+    ...features.map((item) => item.id),
+    ...playlistEntries.map(([, item]) => item?.id).filter(Boolean),
+  ])
+  const carouselRows =
+    page === 'home'
+      ? displayedRows.map(([label, items]) => [
+          label,
+          items.filter((item) => typeof item === 'string' || !reservedHomeIds.has(item.id)),
+        ])
+      : displayedRows
 
   useEffect(() => {
     if (features.length < 2) return
@@ -733,7 +759,27 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
           <button onClick={() => go('home')} aria-label="Back home">‹</button>
         ) : <span />}
         <img src="/brand/disney-plus-logo.svg" alt="Disney+" />
-        <button className="mobile-disney-download" aria-label="Downloads">⇩</button>
+        <button
+          className="mobile-disney-menu-button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        >
+          {menuOpen ? '×' : '☰'}
+        </button>
+        {menuOpen && (
+          <nav className="mobile-disney-menu" aria-label="Disney Plus menu">
+            {[
+              ['Home', 'home'],
+              ['Originals', 'originals'],
+              ['Movies', 'movies'],
+              ['Series', 'series'],
+              ['My List', 'watchlist'],
+            ].map(([label, path]) => (
+              <button key={path} onClick={() => go(path)}>{label}</button>
+            ))}
+          </nav>
+        )}
       </header>
 
       {page !== 'home' && page !== 'search' && page !== 'brand' && <h1 className="mobile-disney-page-title">{sectionName}</h1>}
@@ -750,6 +796,7 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
           studio={brandInfo[brand]}
           feature={displayedRows[0]?.[1]?.[0]}
           pinned={studioPinned}
+          openTitle={openTitle}
         />
       )}
 
@@ -779,22 +826,19 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
       {page === 'watchlist' && !myList.length && (
         <p className="mobile-disney-empty">Use the ＋ button on a title to build your list.</p>
       )}
-      {displayedRows.map(([title, items]) => (
+      {carouselRows.map(([title, items]) => (
         <MobileDisneyRow key={title} title={title} items={items} openTitle={openTitle} />
       ))}
       {page === 'home' && (
         <section className="mobile-disney-playlists">
           <h2>Playlists</h2>
           <div>
-            {rows
-              .filter(([, items]) => items?.length)
-              .slice(2, 6)
-              .map(([label, items]) => (
+            {playlistEntries.map(([label, item]) => (
                 <button
                   key={label}
-                  onClick={() => typeof items[0] !== 'string' && openTitle(items[0])}
+                  onClick={() => typeof item !== 'string' && openTitle(item)}
                 >
-                  <img src={typeof items[0] === 'string' ? art[0] : items[0].image || items[0].poster} alt="" />
+                  <img src={typeof item === 'string' ? art[0] : item.image || item.poster} alt="" />
                   <span />
                   <strong>{label}</strong>
                   <small>Playlist</small>
@@ -806,30 +850,22 @@ function MobileDisneyHome({ page, brand, brandInfo, heroTitles, rows, allTitles,
 
       <nav className="mobile-disney-bottom" aria-label="Disney Plus navigation">
         <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span>⌂</span>Home</button>
-        <button className={page === 'originals' ? 'active' : ''} onClick={() => go('originals')}><span>◆</span>Live</button>
-        <button className={page === 'movies' ? 'active' : ''} onClick={() => go('movies')}><span>▣</span>Verts</button>
-        <button className={page === 'search' ? 'active' : ''} onClick={() => go('search')}><span>⌕</span>Search</button>
-        <button className={page === 'watchlist' ? 'active' : ''} onClick={() => go('watchlist')}><span className="mobile-disney-avatar">J</span>Jamal</button>
+        <button className={page === 'originals' ? 'active' : ''} onClick={() => go('originals')}><span>◆</span>Originals</button>
+        <button className={page === 'movies' ? 'active' : ''} onClick={() => go('movies')}><span>▣</span>Movies</button>
+        <button className={page === 'series' ? 'active' : ''} onClick={() => go('series')}><span>▤</span>Series</button>
+        <button className={page === 'watchlist' ? 'active' : ''} onClick={() => go('watchlist')}><span>＋</span>My List</button>
       </nav>
     </main>
   )
 }
 
-function MobileStudioLanding({ studio, feature, pinned }) {
+function MobileStudioLanding({ studio, feature, pinned, openTitle }) {
   if (!studio) return null
-  const landingImage = feature?.image || feature?.poster || art[0]
   return (
     <>
-      <section
-        className={`mobile-studio-landing mobile-studio-${studio.slug}${pinned ? ' is-scrolled' : ''}`}
-        style={{ backgroundImage: `url(${landingImage})` }}
-      >
-        <span className="mobile-studio-shade" />
-        <div className="mobile-studio-hero-logo">
-          <img src={studio.logo} alt={`${studio.name} logo`} />
-          <p>{studio.tagline}</p>
-        </div>
-      </section>
+      <div className={`mobile-studio-preview${pinned ? ' is-scrolled' : ''}`}>
+        <BrandLanding brand={studio} feature={feature} openTitle={openTitle} />
+      </div>
       <div className={`mobile-studio-pinned-logo${pinned ? ' visible' : ''}`} aria-hidden={!pinned}>
         <img src={studio.logo} alt="" />
       </div>
